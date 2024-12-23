@@ -1,0 +1,24 @@
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\bin\Debug\KFC.exe.config
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\bin\Debug\KFC.exe
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\bin\Debug\KFC.pdb
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.csproj.AssemblyReference.cache
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.Form1.resources
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.Properties.Resources.resources
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.csproj.GenerateResource.cache
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.csproj.CoreCompileInputs.cache
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.exe
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.pdb
+H:\My Drive\Kuliah\Proyek\PAD\KFC\KFC\obj\Debug\KFC.Kasir.resources
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\bin\Debug\KFC.exe.config
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\bin\Debug\KFC.exe
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\bin\Debug\KFC.pdb
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.csproj.AssemblyReference.cache
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.Form1.resources
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.Form2.resources
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.Kasir.resources
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.manager.resources
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.Properties.Resources.resources
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.csproj.GenerateResource.cache
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.csproj.CoreCompileInputs.cache
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.exe
+C:\Users\seanc\OneDrive\Desktop\kuliah\project\kfcCashier\PAD\KFC\KFC\obj\Debug\KFC.pdb
