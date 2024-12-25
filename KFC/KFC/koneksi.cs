@@ -18,7 +18,7 @@ namespace KFC
         public static void setupConn()
         {
             conn = new MySqlConnection(
-                "Server=%ppad;" +
+                "Server=localhost;" +
                 "Database=proyekpv;" +
                 "User ID=root;" +
                 "Password=;"

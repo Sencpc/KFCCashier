@@ -87,6 +87,7 @@
     <Compile Include="manager.Designer.cs">
       <DependentUpon>manager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CrystalReport1.rpt">
