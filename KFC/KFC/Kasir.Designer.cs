@@ -127,7 +127,7 @@ namespace KFC
             this.panel2.Location = new System.Drawing.Point(273, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1145, 841);
+            this.panel2.Size = new System.Drawing.Size(1299, 841);
             this.panel2.TabIndex = 6;
             // 
             // button7
@@ -198,6 +198,7 @@ namespace KFC
             this.ClientSize = new System.Drawing.Size(1420, 841);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Kasir";
             this.Text = "Kasir";

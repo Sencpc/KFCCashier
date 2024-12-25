@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KFC.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,12 +18,11 @@ namespace KFC
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            printMenu();
         }
 
         private void Kasir_Load(object sender, EventArgs e)
         {
-
+            printMenu();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -32,7 +32,8 @@ namespace KFC
 
         private void label3_Click(object sender, EventArgs e)
         {
-
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -42,57 +43,65 @@ namespace KFC
 
         public void printMenu()
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 1; j++)
+                for (int j = 0; j < 2; j++)
                 {
-                    Label nwlb = new Label();
-                    nwlb.BackColor = System.Drawing.Color.White;
-                    nwlb.Location = new System.Drawing.Point(34 + j*222, 122 + i*235);
-                    nwlb.Name = "l"+i.ToString()+j.ToString();
-                    nwlb.Size = new System.Drawing.Size(222, 235);
-                    nwlb.TabIndex = 6;
-                    panel2.Controls.Add(nwlb);
+                    Panel nwpl = new Panel();
+                    nwpl.BackColor = System.Drawing.Color.White;
+                    nwpl.Location = new System.Drawing.Point(34 + j * 340, 80 + i * 340);
+                    nwpl.Name = "panel3";
+                    nwpl.Size = new System.Drawing.Size(322, 326);
+                    nwpl.TabIndex = 11;
+
+                    Label nwlb= new Label();
+                    nwlb.AutoSize = true;
+                    nwlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    nwlb.Location = new System.Drawing.Point(23, 161);
+                    nwlb.Name = "label4";
+                    nwlb.Size = new System.Drawing.Size(161, 29);
+                    nwlb.TabIndex = 2;
+                    nwlb.Text = "Paket Hemat";
+                    nwpl.Controls.Add(nwlb);
+
+                    Label nwlb2 = new Label();
+                    nwlb2.Location = new System.Drawing.Point(28, 194);
+                    nwlb2.Name = "label5";
+                    nwlb2.Size = new System.Drawing.Size(275, 75);
+                    nwlb2.TabIndex = 3;
+                    nwlb2.Text = "21 Piece of chicken cooked to golden perfection and a 2lt Pepsi";
+                    nwpl.Controls.Add(nwlb2);
+
+                    Label nwlb3 = new Label();
+                    nwlb3.BackColor = System.Drawing.Color.White;
+                    nwlb3.ForeColor = System.Drawing.Color.Red;
+                    nwlb3.Location = new System.Drawing.Point(23, 282);
+                    nwlb3.Name = "label6";
+                    nwlb3.Size = new System.Drawing.Size(152, 29);
+                    nwlb3.TabIndex = 4;
+                    nwlb3.Text = "Rp 78.000";
+                    nwpl.Controls.Add(nwlb3);
 
                     PictureBox nwpb = new PictureBox();
-                    nwpb.Location = new System.Drawing.Point(34, 122);
+                    nwpb.Image = Image.FromFile("C:\\Users\\seanc\\Downloads\\6b061175-ed79-daf0-5aab-f1026a9b657a.png");
+                    nwpb.Location = new System.Drawing.Point(19, 16);
                     nwpb.Name = "pictureBox2";
-                    nwpb.Size = new System.Drawing.Size(222, 120);
-                    nwpb.TabIndex = 7;
+                    nwpb.Size = new System.Drawing.Size(284, 131);
+                    nwpb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+                    nwpb.TabIndex = 0;
                     nwpb.TabStop = false;
-                    panel2.Controls.Add(nwpb);
-
-                    nwlb.BackColor = System.Drawing.Color.White;
-                    nwlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    nwlb.Location = new System.Drawing.Point(34, 259);
-                    nwlb.Name = "2l"+i.ToString()+j.ToString();
-                    nwlb.Size = new System.Drawing.Size(222, 37);
-                    nwlb.TabIndex = 8;
-                    nwlb.Text = "Kentang";
-                    nwlb.Click += new System.EventHandler(this.label5_Click);
-                    panel2.Controls.Add(nwlb);
-
-                    nwlb.AutoSize = true;
-                    nwlb.BackColor = System.Drawing.Color.White;
-                    nwlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    nwlb.ForeColor = System.Drawing.Color.Red;
-                    nwlb.Location = new System.Drawing.Point(34, 323);
-                    nwlb.Name = "label6";
-                    nwlb.Size = new System.Drawing.Size(93, 20);
-                    nwlb.TabIndex = 9;
-                    nwlb.Text = "Rp 255.000";
-                    panel2.Controls.Add(nwlb);
+                    nwpl.Controls.Add(nwpb);
 
                     Button nwbtn = new Button();
-                    nwbtn.BackColor = System.Drawing.Color.White;
-                    nwbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                    nwbtn.Location = new System.Drawing.Point(382, 314);
-                    nwbtn.Name = "button8";
-                    nwbtn.Size = new System.Drawing.Size(92, 32);
-                    nwbtn.TabIndex = 10;
-                    nwbtn.Text = "Add";
-                    nwbtn.UseVisualStyleBackColor = false;
-                    panel2.Controls.Add(nwbtn);
+                    nwbtn.Location = new System.Drawing.Point(181, 272);
+                    nwbtn.Name = "button2";
+                    nwbtn.Size = new System.Drawing.Size(122, 39);
+                    nwbtn.TabIndex = 1;
+                    nwbtn.Text = "Buy";
+                    nwbtn.UseVisualStyleBackColor = true;
+                    nwpl.Controls.Add(nwbtn);
+
+                    panel2.Controls.Add(nwpl);
                 }
             }
             

@@ -19,7 +19,7 @@ namespace KFC
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             d.roundedLabel(label1,15);
-            d.roundedButton(45, button1);
+            d.roundedButton(57, button1);
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
