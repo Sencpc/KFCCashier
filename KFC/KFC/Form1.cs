@@ -25,24 +25,28 @@ namespace KFC
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            koneksi.setupConn();
         }
 
+        //  miss click
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         
-
+        // miss click
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
+        // login
         private void button1_Click(object sender, EventArgs e)
         {
             string user = textBox1.Text;
+            if (user.Equals("")) { 
+                
+            }
             Kasir k = new Kasir(user);
             k.ShowDialog();
             this.Hide();

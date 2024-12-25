@@ -64,6 +64,7 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneratorID.cs" />
+    <Compile Include="Karyawan.cs" />
     <Compile Include="Kasir.cs">
       <SubType>Form</SubType>
     </Compile>
