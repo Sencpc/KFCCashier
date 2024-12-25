@@ -17,6 +17,7 @@ namespace KFC
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            printMenu();
         }
 
         private void Kasir_Load(object sender, EventArgs e)
@@ -31,8 +32,7 @@ namespace KFC
 
         private void label3_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.ShowDialog();
+
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -40,58 +40,67 @@ namespace KFC
 
         }
 
-        //Kalau pakai dynamic component e
+        public void printMenu()
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                for (int j = 0; j < 1; j++)
+                {
+                    Label nwlb = new Label();
+                    nwlb.BackColor = System.Drawing.Color.White;
+                    nwlb.Location = new System.Drawing.Point(34 + j*222, 122 + i*235);
+                    nwlb.Name = "l"+i.ToString()+j.ToString();
+                    nwlb.Size = new System.Drawing.Size(222, 235);
+                    nwlb.TabIndex = 6;
+                    panel2.Controls.Add(nwlb);
 
-        //label
-        //this.label4.BackColor = System.Drawing.Color.White;
-        //this.label4.Location = new System.Drawing.Point(264, 122);
-        //this.label4.Name = "label4";
-        //this.label4.Size = new System.Drawing.Size(222, 235);
-        //this.label4.TabIndex = 6;
+                    PictureBox nwpb = new PictureBox();
+                    nwpb.Location = new System.Drawing.Point(34, 122);
+                    nwpb.Name = "pictureBox2";
+                    nwpb.Size = new System.Drawing.Size(222, 120);
+                    nwpb.TabIndex = 7;
+                    nwpb.TabStop = false;
+                    panel2.Controls.Add(nwpb);
 
-        /* Picture Box
-        this.pictureBox2.Location = new System.Drawing.Point(264, 122);
-        this.pictureBox2.Name = "pictureBox2";
-        this.pictureBox2.Size = new System.Drawing.Size(222, 120);
-        this.pictureBox2.TabIndex = 7;
-        this.pictureBox2.TabStop = false;
-        */
-        /* Label untuk text nama makanan e 
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(264, 259);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(222, 37);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Kentang";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-         */
+                    nwlb.BackColor = System.Drawing.Color.White;
+                    nwlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    nwlb.Location = new System.Drawing.Point(34, 259);
+                    nwlb.Name = "2l"+i.ToString()+j.ToString();
+                    nwlb.Size = new System.Drawing.Size(222, 37);
+                    nwlb.TabIndex = 8;
+                    nwlb.Text = "Kentang";
+                    nwlb.Click += new System.EventHandler(this.label5_Click);
+                    panel2.Controls.Add(nwlb);
 
-        /* label buat text harganya 
-         
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(274, 323);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 20);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Rp 255.000";
-        
-        */
+                    nwlb.AutoSize = true;
+                    nwlb.BackColor = System.Drawing.Color.White;
+                    nwlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    nwlb.ForeColor = System.Drawing.Color.Red;
+                    nwlb.Location = new System.Drawing.Point(34, 323);
+                    nwlb.Name = "label6";
+                    nwlb.Size = new System.Drawing.Size(93, 20);
+                    nwlb.TabIndex = 9;
+                    nwlb.Text = "Rp 255.000";
+                    panel2.Controls.Add(nwlb);
 
-        /* Button add
-         
-            this.button8.BackColor = System.Drawing.Color.White;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(382, 314);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 32);
-            this.button8.TabIndex = 10;
-            this.button8.Text = "Add";
-            this.button8.UseVisualStyleBackColor = false;
-         
-        */
+                    Button nwbtn = new Button();
+                    nwbtn.BackColor = System.Drawing.Color.White;
+                    nwbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                    nwbtn.Location = new System.Drawing.Point(382, 314);
+                    nwbtn.Name = "button8";
+                    nwbtn.Size = new System.Drawing.Size(92, 32);
+                    nwbtn.TabIndex = 10;
+                    nwbtn.Text = "Add";
+                    nwbtn.UseVisualStyleBackColor = false;
+                    panel2.Controls.Add(nwbtn);
+                }
+            }
+            
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
