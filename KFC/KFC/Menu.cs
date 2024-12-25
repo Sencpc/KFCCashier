@@ -13,44 +13,50 @@ namespace KFC
         //untuk show menu utama yang akan menampilkan semua menu yang ada blyattt
         public DataTable showMenu(string keyword = "")
         {
-            string query =
-                "SELECT mac.nama_menu AS \"Nama Menu\" , mac.jenis AS Jenis , mac.harga AS Price , 'Alacarte Chicken' AS Kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_alacarte_chicken mac ON mac.id_alacarte = mu.list_id" +
-                "UNION ALL" +
-                "5SELECT mbu.nama_bucket AS \"Nama Menu\" , 'Chicken Combo' AS Jenis , mbu.harga AS Price , 'Bucket' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_bucket mbu ON mbu.id_bucket = mu.list_id" +
-                "UNION ALL" +
-                "SELECT mco.nama_combo AS \"Nama Menu\" , \"I'm Hot\" AS Jenis , mco.harga AS Price , 'Combo' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_combo mco ON mco.id_combo = mu.list_id" +
-                "UNION ALL" +
-                "SELECT mbr.nama_menu AS \"Nama Menu\" , 'Breakfast Combo' AS Jenis , mbr.harga AS Price , 'Breakfast' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_breakfast mbr ON mbr.id_breakfast = mu.list_id" +
-                "UNION ALL" +
-                "SELECT mcf.nama_menu AS \"Nama Menu\" , mcf.jenis AS Jenis , mbu.harga AS Price , 'Coffee' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_coffee mcf ON mcf.id_coffee = mu.list_id" +
-                "UNION ALL" +
-                "SELECT mkm.nama_menu AS \"Nama Menu\" , 'Kid Combo' AS Jenis , mkm.harga AS Price , 'Kids Meal' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_kids_meal mkm ON mkm.id_kids = mu.list_id" +
-                "UNION ALL" +
-                "SELECT mde.nama_menu AS \"Nama Menu\" , 'Dessert Blyyatttt' AS Jenis , mde.harga AS Price , 'Dessert' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_dessert mde ON mde.id_dessert = mu.list_id" +
-                "4UNION ALL" +
-                "SELECT msp.nama_menu AS \"Nama Menu\" , 'Special Bitch' AS Jenis , msp.harga AS Price , 'Spesial' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN menu_spesial msp ON msp.id_spesial = mu.list_id" +
-                "SELECT d.nama_drinks AS \"Nama Menu\" , '!Africa' AS Jenis , d.harga AS Price , 'Drinks' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN drinks d ON d.id_drinks = mu.list_id" +
-                "SELECT s.nama_sides AS \"Nama Menu\" , 'AAAHHH Food' AS Jenis , s.harga AS Price , 'Sides' AS kategori" +
-                "FROM menu_utama mu" +
-                "JOIN sides s ON s.id_sides = mu.list_id";
+            string query = 
+                @"SELECT mac.nama_menu AS 'Nama Menu', mac.jenis AS 'Jenis', mac.harga AS 'Price', 'Alacarte Chicken' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_alacarte_chicken mac ON mac.id_alacarte = mu.list_id
+                UNION ALL
+                SELECT mbu.nama_bucket AS 'Nama Menu', 'Chicken Combo' AS 'Jenis', mbu.harga AS 'Price', 'Bucket' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_bucket mbu ON mbu.id_bucket = mu.list_id
+                UNION ALL
+                SELECT mco.nama_combo AS 'Nama Menu', 'I''m Hot' AS 'Jenis', mco.harga AS 'Price', 'Combo' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_combo mco ON mco.id_combo = mu.list_id
+                UNION ALL
+                SELECT mbr.nama_menu AS 'Nama Menu', 'Breakfast Combo' AS 'Jenis', mbr.harga AS 'Price', 'Breakfast' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_breakfast mbr ON mbr.id_breakfast = mu.list_id
+                UNION ALL
+                SELECT mcf.nama_menu AS 'Nama Menu', mcf.jenis AS 'Jenis', mcf.harga AS 'Price', 'Coffee' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_coffee mcf ON mcf.id_coffee = mu.list_id
+                UNION ALL
+                SELECT mkm.nama_menu AS 'Nama Menu', 'Kid Combo' AS 'Jenis', mkm.harga AS 'Price', 'Kids Meal' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_kids_meal mkm ON mkm.id_kids = mu.list_id
+                UNION ALL
+                SELECT mde.nama_menu AS 'Nama Menu', 'Dessert Blyyatttt' AS 'Jenis', mde.harga AS 'Price', 'Dessert' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_dessert mde ON mde.id_dessert = mu.list_id
+                UNION ALL
+                SELECT msp.nama_menu AS 'Nama Menu', 'Special Bitch' AS 'Jenis', msp.harga AS 'Price', 'Spesial' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN menu_spesial msp ON msp.id_spesial = mu.list_id
+                UNION ALL
+                SELECT d.nama_drinks AS 'Nama Menu', '!Africa' AS 'Jenis', d.harga AS 'Price', 'Drinks' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN drinks d ON d.id_drinks = mu.list_id
+                UNION ALL
+                SELECT s.nama_sides AS 'Nama Menu', 'AAAHHH Food' AS 'Jenis', s.harga AS 'Price', 'Sides' AS 'Kategori'
+                FROM menu_utama mu
+                JOIN sides s ON s.id_sides = mu.list_id;
+            ";
+
+
+
 
             if (!string.IsNullOrEmpty(keyword))
             {
