@@ -42,9 +42,11 @@ namespace KFC
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.dgvMenu = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMenu)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -119,6 +121,7 @@ namespace KFC
             // panel2
             // 
             this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.dgvMenu);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
@@ -141,6 +144,7 @@ namespace KFC
             this.button7.TabIndex = 10;
             this.button7.Text = "KFC Bucket";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -153,6 +157,7 @@ namespace KFC
             this.button6.TabIndex = 9;
             this.button6.Text = "Breakfast";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -165,6 +170,7 @@ namespace KFC
             this.button5.TabIndex = 8;
             this.button5.Text = "Drinks";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -177,6 +183,7 @@ namespace KFC
             this.button4.TabIndex = 7;
             this.button4.Text = "Burger";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -189,6 +196,18 @@ namespace KFC
             this.button3.TabIndex = 6;
             this.button3.Text = "All";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // dgvMenu
+            // 
+            this.dgvMenu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMenu.Location = new System.Drawing.Point(34, 130);
+            this.dgvMenu.Name = "dgvMenu";
+            this.dgvMenu.RowHeadersWidth = 62;
+            this.dgvMenu.RowTemplate.Height = 28;
+            this.dgvMenu.Size = new System.Drawing.Size(1077, 624);
+            this.dgvMenu.TabIndex = 11;
             // 
             // Kasir
             // 
@@ -206,6 +225,7 @@ namespace KFC
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMenu)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,5 +244,6 @@ namespace KFC
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dgvMenu;
     }
 }

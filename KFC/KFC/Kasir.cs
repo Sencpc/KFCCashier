@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KFC
 {
     public partial class Kasir : Form
     {
         Design d = new Design();
+        Menu menu = new Menu();
         public Kasir(string user)
         {
             InitializeComponent();
@@ -83,7 +85,7 @@ namespace KFC
                     nwpl.Controls.Add(nwlb3);
 
                     PictureBox nwpb = new PictureBox();
-                    nwpb.Image = Image.FromFile("C:\\Users\\seanc\\Downloads\\6b061175-ed79-daf0-5aab-f1026a9b657a.png");
+                    //nwpb.Image = Image.FromFile("C:\\Users\\seanc\\Downloads\\6b061175-ed79-daf0-5aab-f1026a9b657a.png");
                     nwpb.Location = new System.Drawing.Point(19, 16);
                     nwpb.Name = "pictureBox2";
                     nwpb.Size = new System.Drawing.Size(284, 131);
@@ -110,6 +112,36 @@ namespace KFC
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //fiter button ALL
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dgvMenu.DataSource = menu.showMenu();
+        }
+
+        //fiter button Burger
+        private void button4_Click(object sender, EventArgs e)
+        {
+            dgvMenu.DataSource = menu.showMenu(kategori: "Burger");
+        }
+
+        //fiter button Drinks
+        private void button5_Click(object sender, EventArgs e)
+        {
+            dgvMenu.DataSource = menu.showMenu(kategori: "Drinks");
+        }
+
+        //fiter button Breakfast
+        private void button6_Click(object sender, EventArgs e)
+        {
+            dgvMenu.DataSource = menu.showMenu(kategori: "Breakfast");
+        }
+
+        //fiter button Bucket
+        private void button7_Click(object sender, EventArgs e)
+        {
+            dgvMenu.DataSource = menu.showMenu(kategori: "Bucket");
         }
     }
 }

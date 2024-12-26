@@ -11,9 +11,9 @@ namespace KFC
     class Menu
     {
         //untuk show menu utama yang akan menampilkan semua menu yang ada blyattt
-        public DataTable showMenu(string keyword = "")
+        public DataTable showMenu(string keyword = "", string kategori = "")
         {
-            string query = 
+            string query =
                 @"SELECT mac.nama_menu AS 'Nama Menu', mac.jenis AS 'Jenis', mac.harga AS 'Price', 'Alacarte Chicken' AS 'Kategori'
                 FROM menu_utama mu
                 JOIN menu_alacarte_chicken mac ON mac.id_alacarte = mu.list_id
@@ -52,28 +52,23 @@ namespace KFC
                 UNION ALL
                 SELECT s.nama_sides AS 'Nama Menu', 'AAAHHH Food' AS 'Jenis', s.harga AS 'Price', 'Sides' AS 'Kategori'
                 FROM menu_utama mu
-                JOIN sides s ON s.id_sides = mu.list_id;
-            ";
+                JOIN sides s ON s.id_sides = mu.list_id";
 
-
-
+            if (!string.IsNullOrEmpty(kategori))
+            {
+                query += " WHERE Kategori = @kategori";
+            }
 
             if (!string.IsNullOrEmpty(keyword))
             {
-                query += " WHERE mac.nama_menu LIKE @keyword OR " +
-                    "WHERE mbu.nama_bucket LIKE @keyword OR " +
-                    "WHERE mco.nama_combo LIKE @keyword OR " +
-                    "WHERE mbr.nama_menu LIKE @keyword OR " +
-                    "WHERE mcf.nama_menu LIKE @keyword OR " +
-                    "WHERE mkm.nama_menu LIKE @keyword OR " +
-                    "WHERE mde.nama_menu LIKE @keyword OR " +
-                    "WHERE msp.nama_menu LIKE @keyword OR " +
-                    "WHERE d.nama_drinks LIKE @keyword OR " +
-                    "WHERE s.nama_sides LIKE @keyword";
+                query += (string.IsNullOrEmpty(kategori) ? " WHERE" : " AND") + " Nama_Menu LIKE @keyword";
             }
 
-
             MySqlDataAdapter da = new MySqlDataAdapter(query, koneksi.getConn());
+            if (!string.IsNullOrEmpty(kategori))
+            {
+                da.SelectCommand.Parameters.AddWithValue("@kategori", kategori);
+            }
             if (!string.IsNullOrEmpty(keyword))
             {
                 da.SelectCommand.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
@@ -83,5 +78,6 @@ namespace KFC
             da.Fill(dt);
             return dt;
         }
+
     }
 }
