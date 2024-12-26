@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KFC
 {
@@ -25,6 +24,7 @@ namespace KFC
         private void Kasir_Load(object sender, EventArgs e)
         {
             printMenu();
+            dgvMenu.DataSource = menu.showMenu();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace KFC
         //fiter button Burger
         private void button4_Click(object sender, EventArgs e)
         {
-            dgvMenu.DataSource = menu.showMenu(kategori: "Burger");
+            dgvMenu.DataSource = menu.showMenu(kategori: "Sides");
         }
 
         //fiter button Drinks
