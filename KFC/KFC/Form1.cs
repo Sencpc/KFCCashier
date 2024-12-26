@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,8 @@ namespace KFC
     public partial class Form1 : Form
     {
         Design d = new Design();
+        Karyawan karyawan = new Karyawan();
+
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +28,7 @@ namespace KFC
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            koneksi.setupConn();
+            
         }
 
         //  miss click
@@ -43,13 +46,37 @@ namespace KFC
         // login
         private void button1_Click(object sender, EventArgs e)
         {
-            string user = textBox1.Text;
-            if (user.Equals("")) { 
-                
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+            string fullName = karyawan.fullNameCheck(username, password);
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Username dan password tidak boleh kosong.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            Kasir k = new Kasir(user);
-            k.ShowDialog();
-            this.Hide();
+
+            DataTable dt = karyawan.karyawanCheck(username, password);
+
+            if (dt.Rows.Count > 0)
+            {
+                if (karyawan.jabatanCheck(username, password).Equals("Kasir"))
+                {
+                    Kasir k = new Kasir(fullName);
+                    k.ShowDialog();
+                    this.Hide();
+                }
+                else if (karyawan.jabatanCheck(username, password).Equals("Manager")) {
+                    manager m = new manager(fullName);
+                    m.ShowDialog();
+                    this.Hide(); 
+                }
+            }
+            else
+            {
+                MessageBox.Show("Username atau password salah.", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
     }
 }

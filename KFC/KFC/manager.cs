@@ -12,16 +12,19 @@ namespace KFC
 {
     public partial class manager : Form
     {
-        public manager()
+        public manager(string user)
         {
             InitializeComponent();
+            disableButton();
         }
+
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
+        //miss click
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -32,14 +35,42 @@ namespace KFC
 
         }
 
+        //miss click
         private void label6_Click(object sender, EventArgs e)
         {
 
         }
 
+        //miss click
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        //button add
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //button update
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //button delete
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void disableButton()
+        {
+            button4.Enabled = true;
+            button5.Enabled = false;
+            button6.Enabled = false;
         }
     }
 }

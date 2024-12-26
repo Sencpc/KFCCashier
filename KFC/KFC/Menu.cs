@@ -99,6 +99,8 @@ namespace KFC
                     " WHERE full_menu.Kategori = @kategori;";
             }
 
+            // kalo ada keyword di parameternya
+
             //if (!string.IsNullOrEmpty(keyword))
             //{
             //    query += (string.IsNullOrEmpty(kategori) ? " WHERE" : " AND") + " Nama Menu LIKE @keyword";
