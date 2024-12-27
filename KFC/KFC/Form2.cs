@@ -20,12 +20,14 @@ namespace KFC
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            koneksi.setupConn();
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Form1 home = new Form1();
+            home.ShowDialog();
+            this.Hide();
         }
     }
 }

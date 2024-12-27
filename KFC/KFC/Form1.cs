@@ -28,7 +28,7 @@ namespace KFC
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            koneksi.setupConn();
         }
 
         //  miss click
@@ -46,6 +46,7 @@ namespace KFC
         // login
         private void button1_Click(object sender, EventArgs e)
         {
+            
             string username = textBox1.Text;
             string password = textBox2.Text;
             string fullName = karyawan.fullNameCheck(username, password);
@@ -66,7 +67,7 @@ namespace KFC
                     k.ShowDialog();
                     this.Hide();
                 }
-                else if (karyawan.jabatanCheck(username, password).Equals("Manager")) {
+                else if (karyawan.jabatanCheck(username, password).Equals("Manager") || karyawan.jabatanCheck(username, password).Equals("Admin")) {
                     manager m = new manager(fullName);
                     m.ShowDialog();
                     this.Hide(); 

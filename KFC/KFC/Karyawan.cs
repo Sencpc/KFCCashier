@@ -26,15 +26,8 @@ namespace KFC
                     {
                         DataTable dt = new DataTable();
 
-                        try
-                        {
-                            da.Fill(dt);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Terjadi kesalahan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
+                        da.Fill(dt);
+                                              
                         return dt;
                     }
                 }
@@ -57,15 +50,8 @@ namespace KFC
                     {
                         DataTable dt = new DataTable();
 
-                        try
-                        {
-                            da.Fill(dt);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Terjadi kesalahan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
+                        da.Fill(dt);
+                        
                         return dt;
                     }
                 }
@@ -77,28 +63,20 @@ namespace KFC
         {
             string query = "SELECT fullName FROM karyawan WHERE username_karyawan = @username AND password_karyawan = @password";
             string fullName = "";
-
-            try
+ 
+            using (var conn = koneksi.getConn())
             {
-                using (var conn = koneksi.getConn())
+                using (var cmd = new MySqlCommand(query, conn))
                 {
-                    conn.Open();
-                    using (var cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password);
 
-                        var result = cmd.ExecuteScalar();
-                        if (result != null)
-                        {
-                            fullName = result.ToString();
-                        }
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        fullName = result.ToString();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Terjadi kesalahan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return fullName;

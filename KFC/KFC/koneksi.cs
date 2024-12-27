@@ -25,5 +25,14 @@ namespace KFC
                 );
             conn.Open();
         }
+
+        //public static void OpenConn() { 
+        //    conn.Open();
+        //}
+
+        //public static void CloseConn()
+        //{
+        //    conn.Close();
+        //}
     }
 }
