@@ -261,7 +261,6 @@ namespace KFC
             this.label7.Size = new System.Drawing.Size(84, 20);
             this.label7.TabIndex = 11;
             this.label7.Text = "Discount : ";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label6
             // 
@@ -271,12 +270,11 @@ namespace KFC
             this.label6.Size = new System.Drawing.Size(43, 20);
             this.label6.TabIndex = 10;
             this.label6.Text = "img?";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(600, 416);
+            this.checkBox2.Location = new System.Drawing.Point(611, 416);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(112, 24);
@@ -287,7 +285,7 @@ namespace KFC
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(516, 418);
+            this.checkBox1.Location = new System.Drawing.Point(516, 415);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(78, 24);
@@ -339,7 +337,6 @@ namespace KFC
             this.label3.Size = new System.Drawing.Size(65, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Harga : ";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // textBox1
             // 

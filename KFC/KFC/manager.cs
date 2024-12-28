@@ -16,6 +16,7 @@ namespace KFC
         {
             InitializeComponent();
             disableButton();
+            label1.Text ="Welcome, "+user;
         }
 
 
@@ -24,25 +25,7 @@ namespace KFC
 
         }
 
-        //miss click
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        //miss click
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //miss click
-        private void label7_Click(object sender, EventArgs e)
         {
 
         }

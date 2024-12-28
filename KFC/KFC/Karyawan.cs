@@ -49,7 +49,7 @@ namespace KFC
 
                     return dt.Rows[0][0].ToString();
                 }
-                }
+            }
         }
 
         //buat masukin fullName kehalaman selanjutnya
