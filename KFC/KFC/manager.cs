@@ -16,7 +16,11 @@ namespace KFC
         {
             InitializeComponent();
             disableButton();
+<<<<<<< HEAD
             label1.Text ="Welcome, "+user;
+=======
+            label8.Text = user;
+>>>>>>> d003e3c6b219d7735a4994465c11fe9d384d4142
         }
 
 
@@ -54,6 +58,14 @@ namespace KFC
             button4.Enabled = true;
             button5.Enabled = false;
             button6.Enabled = false;
+        }
+
+        //logOut ke halaman login
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form1 login = new Form1();
+            login.ShowDialog();
+            this.Hide();
         }
     }
 }

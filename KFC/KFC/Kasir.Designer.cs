@@ -71,6 +71,7 @@ namespace KFC
             this.button1.TabIndex = 4;
             this.button1.Text = "LogOut";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -123,6 +124,21 @@ namespace KFC
             this.panel2.Size = new System.Drawing.Size(1300, 752);
             this.panel2.TabIndex = 6;
             // 
+<<<<<<< HEAD
+=======
+            // dgvMenu
+            // 
+            this.dgvMenu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMenu.Location = new System.Drawing.Point(34, 130);
+            this.dgvMenu.Name = "dgvMenu";
+            this.dgvMenu.RowHeadersWidth = 62;
+            this.dgvMenu.RowTemplate.Height = 28;
+            this.dgvMenu.Size = new System.Drawing.Size(1077, 684);
+            this.dgvMenu.TabIndex = 11;
+            this.dgvMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenu_CellContentClick);
+            // 
+>>>>>>> d003e3c6b219d7735a4994465c11fe9d384d4142
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));

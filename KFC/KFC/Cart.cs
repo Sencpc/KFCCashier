@@ -15,7 +15,7 @@ namespace KFC
         {
             string query = 
                 "  SELECT " +
-                "    COALESCE(mbu.nama_bucket, mco.nama_combo, mac.nama_menu, msp.nama_menu, mbr.nama_menu , ) AS \"Nama Makanan\"," +
+                "    COALESCE(mbu.nama_bucket, mco.nama_combo, mac.nama_menu, msp.nama_menu, mbr.nama_menu , d.nama_drinks , s.nama_sides) AS \"Nama Makanan\"," +
                 "   c.qty as Jumlah," +
                 "   c.subtotal as Subtotal," +
                 "   FROM cart c" +
@@ -25,7 +25,32 @@ namespace KFC
                 "   LEFT JOIN menu_alacarte_chicken mac ON mu.list_id = mac.id_alacarte" +
                 "   LEFT JOIN menu_spesial msp ON mu.list_id = msp.id_spesial" +
                 "   LEFT JOIN menu_breakfast mbr ON mu.list_id = mbr.id_breakfast" +
+                "   LEFT JOIN drinks d ON mu.list_id = d.id_drinks" +
+                "   LEFT JOIN sides s ON mu.list_id = s.id_sides" +
                 "   WHERE cart.STATUS = 'Pending';";
+
+            using (var conn = koneksi.getConn())
+            {
+                DataTable dt = new DataTable();
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+
+                return dt;
+            }
+        }
+
+        //buat insert ke table cart pas di celldoubleclick di bagian kasir , dgvMenu nya di sambungin sama ini
+        public DataTable insertIntoCart()
+        {
+            string query =" Insert ";
 
             using (var conn = koneksi.getConn())
             {

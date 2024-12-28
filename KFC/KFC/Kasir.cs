@@ -20,7 +20,10 @@ namespace KFC
         public Kasir(string user)
         {
             InitializeComponent();
+<<<<<<< HEAD
             koneksi.setupConn();
+=======
+>>>>>>> d003e3c6b219d7735a4994465c11fe9d384d4142
             label1.Text = user;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
@@ -32,6 +35,7 @@ namespace KFC
             resetMenu();
         }
 
+<<<<<<< HEAD
         public void resetMenu()
         {
             koneksi.getConn().Close();
@@ -39,17 +43,22 @@ namespace KFC
             printMenu();
         }
 
+=======
+>>>>>>> d003e3c6b219d7735a4994465c11fe9d384d4142
         private void label3_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
             form2.ShowDialog();
         }
 
+<<<<<<< HEAD
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
+=======
+>>>>>>> d003e3c6b219d7735a4994465c11fe9d384d4142
         public void printMenu()
         {
             int t = -1;
@@ -167,6 +176,13 @@ namespace KFC
             koneksi.getConn().Open();
             menuUtama = menu.showMenu(kategori: "Bucket");
             resetMenu();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form1 login = new Form1();
+            login.ShowDialog();
+            this.Hide();
         }
     }
 }
