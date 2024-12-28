@@ -54,22 +54,19 @@ namespace KFC
         {
             string query =" Insert ";
 
-            using (var conn = koneksi.getConn())
+            DataTable dt = new DataTable();
+
+            using (var cmd = new MySqlCommand(query, koneksi.getConn()))
             {
-                DataTable dt = new DataTable();
 
-                using (var cmd = new MySqlCommand(query, conn))
+                using (var da = new MySqlDataAdapter(cmd))
                 {
-
-                    using (var da = new MySqlDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
+                    da.Fill(dt);
                 }
-
-
-                return dt;
             }
+
+
+            return dt;
         }
     }
 }
