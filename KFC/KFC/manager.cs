@@ -16,11 +16,7 @@ namespace KFC
         {
             InitializeComponent();
             disableButton();
-<<<<<<< HEAD
             label1.Text ="Welcome, "+user;
-=======
-            label8.Text = user;
->>>>>>> d003e3c6b219d7735a4994465c11fe9d384d4142
         }
 
 
