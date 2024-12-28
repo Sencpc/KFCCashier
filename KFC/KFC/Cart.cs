@@ -46,5 +46,28 @@ namespace KFC
                 return dt;
             }
         }
+
+        //buat insert ke table cart pas di celldoubleclick di bagian kasir , dgvMenu nya di sambungin sama ini
+        public DataTable insertIntoCart()
+        {
+            string query =" Insert ";
+
+            using (var conn = koneksi.getConn())
+            {
+                DataTable dt = new DataTable();
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+
+                return dt;
+            }
+        }
     }
 }

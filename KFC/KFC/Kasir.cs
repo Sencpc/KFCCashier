@@ -18,6 +18,7 @@ namespace KFC
         public Kasir(string user)
         {
             InitializeComponent();
+            label1.Text = user;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -27,20 +28,10 @@ namespace KFC
             dgvMenu.DataSource = menu.showMenu();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void label3_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
             form2.ShowDialog();
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
 
         public void printMenu()
@@ -148,6 +139,13 @@ namespace KFC
         private void dgvMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form1 login = new Form1();
+            login.ShowDialog();
+            this.Hide();
         }
     }
 }
