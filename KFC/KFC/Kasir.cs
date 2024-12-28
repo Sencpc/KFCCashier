@@ -143,5 +143,11 @@ namespace KFC
         {
             dgvMenu.DataSource = menu.showMenu(kategori: "Bucket");
         }
+
+        // kalo dipencet langsung masuk ke table cart
+        private void dgvMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

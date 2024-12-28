@@ -37,12 +37,12 @@ namespace KFC
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvMenu = new System.Windows.Forms.DataGridView();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.dgvMenu = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -133,6 +133,18 @@ namespace KFC
             this.panel2.Size = new System.Drawing.Size(1299, 841);
             this.panel2.TabIndex = 6;
             // 
+            // dgvMenu
+            // 
+            this.dgvMenu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMenu.Location = new System.Drawing.Point(34, 130);
+            this.dgvMenu.Name = "dgvMenu";
+            this.dgvMenu.RowHeadersWidth = 62;
+            this.dgvMenu.RowTemplate.Height = 28;
+            this.dgvMenu.Size = new System.Drawing.Size(1077, 624);
+            this.dgvMenu.TabIndex = 11;
+            this.dgvMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenu_CellContentClick);
+            // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -197,17 +209,6 @@ namespace KFC
             this.button3.Text = "All";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // dgvMenu
-            // 
-            this.dgvMenu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMenu.Location = new System.Drawing.Point(34, 130);
-            this.dgvMenu.Name = "dgvMenu";
-            this.dgvMenu.RowHeadersWidth = 62;
-            this.dgvMenu.RowTemplate.Height = 28;
-            this.dgvMenu.Size = new System.Drawing.Size(1077, 624);
-            this.dgvMenu.TabIndex = 11;
             // 
             // Kasir
             // 

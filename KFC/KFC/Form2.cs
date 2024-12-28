@@ -12,6 +12,7 @@ namespace KFC
 {
     public partial class Form2 : Form
     {
+        Cart cart = new Cart();
         public Form2()
         {
             InitializeComponent();
@@ -21,13 +22,17 @@ namespace KFC
         private void Form2_Load(object sender, EventArgs e)
         {
             koneksi.setupConn();
+            dgvOrder.DataSource = cart.showCartinOrder();
         }
 
+        //tombol home
         private void label2_Click(object sender, EventArgs e)
         {
             Form1 home = new Form1();
             home.ShowDialog();
             this.Hide();
         }
+
+
     }
 }
