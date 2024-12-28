@@ -15,47 +15,41 @@ namespace KFC
         {
             string query = "SELECT * FROM karyawan WHERE username_karyawan = @username AND password_karyawan = @password";
 
-            using (var conn = koneksi.getConn())
+            using (var cmd = new MySqlCommand(query, koneksi.getConn()))
             {
-                using (var cmd = new MySqlCommand(query, conn))
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+
+                using (var da = new MySqlDataAdapter(cmd))
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
+                    DataTable dt = new DataTable();
 
-                    using (var da = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                        da.Fill(dt);
-                                              
-                        return dt;
-                    }
+                    return dt;
                 }
             }
         }
 
         //buat pengecekan role di login
-        public DataTable jabatanCheck(string username , string password)
+        public string jabatanCheck(string username , string password)
         {
             string query = "SELECT jabatan FROM karyawan WHERE username_karyawan = @username AND password_karyawan = @password";
 
-            using (var conn = koneksi.getConn())
+            using (var cmd = new MySqlCommand(query, koneksi.getConn()))
             {
-                using (var cmd = new MySqlCommand(query, conn))
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+
+                using (var da = new MySqlDataAdapter(cmd))
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
+                    DataTable dt = new DataTable();
 
-                    using (var da = new MySqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                        da.Fill(dt);
-                        
-                        return dt;
-                    }
+                    return dt.Rows[0][0].ToString();
                 }
-            }
+                }
         }
 
         //buat masukin fullName kehalaman selanjutnya
@@ -64,18 +58,15 @@ namespace KFC
             string query = "SELECT fullName FROM karyawan WHERE username_karyawan = @username AND password_karyawan = @password";
             string fullName = "";
  
-            using (var conn = koneksi.getConn())
+            using (var cmd = new MySqlCommand(query, koneksi.getConn()))
             {
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
 
-                    var result = cmd.ExecuteScalar();
-                    if (result != null)
-                    {
-                        fullName = result.ToString();
-                    }
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    fullName = result.ToString();
                 }
             }
 

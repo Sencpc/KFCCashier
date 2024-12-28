@@ -31,22 +31,10 @@ namespace KFC
             koneksi.setupConn();
         }
 
-        //  miss click
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-        
-        // miss click
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         // login
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            koneksi.getConn().Open();
             string username = textBox1.Text;
             string password = textBox2.Text;
             string fullName = karyawan.fullNameCheck(username, password);
@@ -63,11 +51,13 @@ namespace KFC
             {
                 if (karyawan.jabatanCheck(username, password).Equals("Kasir"))
                 {
+                    koneksi.getConn().Close();
                     Kasir k = new Kasir(fullName);
                     k.ShowDialog();
                     this.Hide();
                 }
                 else if (karyawan.jabatanCheck(username, password).Equals("Manager") || karyawan.jabatanCheck(username, password).Equals("Admin")) {
+                    koneksi.getConn().Close();
                     manager m = new manager(fullName);
                     m.ShowDialog();
                     this.Hide(); 

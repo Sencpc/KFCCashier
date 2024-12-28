@@ -24,15 +24,7 @@ namespace KFC
                 "Password=;"
                 );
             conn.Open();
+            conn.Close();
         }
-
-        //public static void OpenConn() { 
-        //    conn.Open();
-        //}
-
-        //public static void CloseConn()
-        //{
-        //    conn.Close();
-        //}
     }
 }

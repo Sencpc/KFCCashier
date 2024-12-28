@@ -94,3 +94,6 @@ C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.csproj.CoreCo
 C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.csproj.Up2Date
 C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.exe
 C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.pdb
+C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.csproj.SuggestedBindingRedirects.cache
+C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.exe.config
