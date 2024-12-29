@@ -124,6 +124,7 @@ namespace KFC
             }
         }
 
+        //buat ngeadd ke cart
         private void btnBuy_Click(object sender, EventArgs e)
         {
 
