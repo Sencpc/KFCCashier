@@ -1,10 +1,12 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KFC
 {
@@ -50,23 +52,29 @@ namespace KFC
         }
 
         //buat insert ke table cart pas di celldoubleclick di bagian kasir , dgvMenu nya di sambungin sama ini
-        public DataTable insertIntoCart()
+        public void insertIntoCart(string id , int qty , int subtotal)
         {
-            string query =" Insert ";
+            string query =" INSERT INTO CART(id_menu , qty , subtotal) VALUES (@id , @jmlh , @subtotal)";
 
-            DataTable dt = new DataTable();
+            MySqlConnection conn = koneksi.getConn();
 
-            using (var cmd = new MySqlCommand(query, koneksi.getConn()))
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@jmlh", qty);
+                cmd.Parameters.AddWithValue("@subtotal", subtotal);
 
-                using (var da = new MySqlDataAdapter(cmd))
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
                 {
-                    da.Fill(dt);
+                    MessageBox.Show("Berhasil", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Gagal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-
-            return dt;
         }
     }
 }
