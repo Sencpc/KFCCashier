@@ -121,5 +121,16 @@ namespace KFC
             return dt;
         }
 
+        //buat combobox di form manager
+        public DataTable comboBoxList() {
+            string query = "Select * from kategori";
+ 
+            MySqlDataAdapter da = new MySqlDataAdapter (query, koneksi.getConn());
+            
+            DataTable dt = new DataTable();
+            da.Fill (dt);
+            return dt;
+        }
+
     }
 }
