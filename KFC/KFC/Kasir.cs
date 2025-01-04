@@ -17,6 +17,7 @@ namespace KFC
         Design d = new Design();
         Menu menu = new Menu();
         DataTable menuUtama = new DataTable();
+        DataTable dtCart = new DataTable();
         public Kasir(string user)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace KFC
 
         private void label3_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2(dtCart);
             form2.ShowDialog();
             form2.Close();
         }
