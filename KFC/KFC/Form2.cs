@@ -12,17 +12,18 @@ namespace KFC
 {
     public partial class Form2 : Form
     {
-        Cart cart = new Cart();
-        public Form2()
+        DataTable dtCart;
+        public Form2(DataTable dtCart)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.dtCart = dtCart;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             koneksi.setupConn();
-            dgvOrder.DataSource = cart.showCartinOrder();
+            dgvOrder.DataSource = dtCart;
         }
 
         //tombol home
@@ -32,7 +33,6 @@ namespace KFC
             home.ShowDialog();
             this.Hide();
         }
-
 
     }
 }

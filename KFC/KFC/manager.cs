@@ -35,7 +35,6 @@ namespace KFC
         private void button4_Click(object sender, EventArgs e)
         {
             string foodName = textBox1.Text;
-            string 
         }
 
         //button update

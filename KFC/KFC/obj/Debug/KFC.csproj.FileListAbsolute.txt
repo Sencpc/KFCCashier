@@ -100,3 +100,4 @@ C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.exe.config
 C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.csproj.SuggestedBindingRedirects.cache
 C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.exe.config
+C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Form3.resources
