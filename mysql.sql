@@ -1,7 +1,6 @@
 DROP DATABASE IF EXISTS proyekpv;
 CREATE DATABASE proyekpv;
 USE proyekpv;
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- table cabang
@@ -325,7 +324,6 @@ INSERT INTO cabang(nama_daerah, jalan_cabang, no_telp) VALUES
 ('Solo', 'Solo Paragon Lt. 3', '(0271) 564455'),
 ('Solo', 'Jl. Adi Sucipto No. 89', '(0271) 568899');
 
-
 CREATE TABLE karyawan (
     id_pegawai INT(11) PRIMARY KEY AUTO_INCREMENT,
     id_cabang INT(12),
@@ -343,167 +341,70 @@ INSERT INTO karyawan (id_cabang ,fullName, username_karyawan, password_karyawan,
 (8,'Nicholas Nathanael', 'nicho1', '1234', 'Kasir', 'Aktif'),
 (11,'Sebastian Tjandra', 'sebas1', '12345', 'Kasir', 'Aktif'),
 (21,'Sean Cornelius', 'sean1', '123456', 'Manager', 'Aktif');
-
--- Base items tables
-CREATE TABLE sides (
-    id_sides VARCHAR(12) PRIMARY KEY,
-    nama_sides VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    harga DECIMAL(12,2) NOT NULL,
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
-
--- Insert data for sides table
-INSERT INTO sides (id_sides, nama_sides, deskripsi, harga, STATUS) VALUES
-('SID001','Nasi', 'Nasi putih', 8000.00, 1),
-('SID002','French Fries', 'Kentang goreng', 15000.00, 1),
-('SID003','Perkedel', 'Perkedel kentang', 6000.00, 1),
-('SID004','Soup', 'Sup ayam', 7000.00, 1);
-
-CREATE TABLE drinks (
-    id_drinks VARCHAR(12) PRIMARY KEY,
-    nama_drinks VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    harga DECIMAL(12,2) NOT NULL,
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
-
--- Insert data for drinks
-INSERT INTO drinks (id_drinks, nama_drinks, deskripsi, harga, STATUS) VALUES
-('DRI001','Coca-Cola', 'Minuman bersoda', 12000.00, 1),
-('DRI002','Sprite', 'Minuman bersoda lemon', 12000.00, 1),
-('DRI003','Fanta', 'Minuman bersoda strawberry', 12000.00, 1),
-('DRI004','Air Mineral', 'Air mineral', 8000.00, 1);
-
-CREATE TABLE menu_spesial (
-    id_spesial VARCHAR(12) PRIMARY KEY,
+`menu_utama`
+CREATE TABLE menu (
+    id_menu VARCHAR(12) PRIMARY KEY,
     nama_menu VARCHAR(255) NOT NULL,
     deskripsi TEXT,
+    id_kategori INT(12) NOT NULL,
     harga DECIMAL(12,2) NOT NULL,
-    gambar VARCHAR(255),
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
-
--- Insert data for special menu
-INSERT INTO menu_spesial (id_spesial, nama_menu, deskripsi, harga, STATUS) VALUES
-('MSP001','Jagoan Hemat 1', '1pc CHICKEN + 1 NASI + 1 MINUM', 35000.00, 1),
-('MSP002','Jagoan Hemat 2', '2pc CHICKEN + 1 NASI + 1 MINUM', 45000.00, 1),
-('MSP003','Jagoan Hemat 3', '1pc CHICKEN + 1 NASI', 25000.00, 1);
-
-CREATE TABLE menu_combo (
-    id_combo VARCHAR(12) PRIMARY KEY,
-    nama_combo VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    id_drinks VARCHAR(12),
-    id_sides VARCHAR(12),
-    harga DECIMAL(12,2) NOT NULL,
+    -- Optional fields
+    jenis VARCHAR(50),
+    potongan VARCHAR(50),
+    jumlah_potongan INT(2),
+    waktu_mulai TIME,
+    waktu_selesai TIME,
+    include_toy TINYINT(1) DEFAULT 0,
     gambar VARCHAR(255),
     STATUS TINYINT(1) NOT NULL DEFAULT 1,
-    FOREIGN KEY (id_drinks) REFERENCES drinks(id_drinks),
-    FOREIGN KEY (id_sides) REFERENCES sides(id_sides)
+    FOREIGN KEY (id_kategori) REFERENCES kategori(id_kategori)
 );
 
--- Insert data for combo menu
-INSERT INTO menu_combo (id_combo, nama_combo, deskripsi, id_drinks, id_sides, harga, STATUS) VALUES
-('MCO001','Super Besar 1', '1pc CHICKEN + 1 NASI + 1 MINUM + 1 SOP', 'DRI001', 'SID001', 40000.00, 1),
-('MCO002','Super Besar 2', '2pc CHICKEN + 1 NASi + 1 MINUM + 1 SOP', 'DRI001', 'SID001', 52000.00, 1),
-('MCO003','Super Family', '5pc CHICKEN + 3 NASI + 3 MINUM', 'DRI001', 'SID002', 120000.00, 1);
+-- Insert all menu items
+INSERT INTO menu (id_menu, nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jumlah_potongan, waktu_mulai, waktu_selesai, include_toy, STATUS) VALUES
+-- Alacarte Chicken
+('MAC001', 'Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Original', 'Dada', NULL, NULL, NULL, 0, 1),
+('MAC002', 'Chicken ORI', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Crispy', 'Paha', NULL, NULL, NULL, 0, 1),
 
-CREATE TABLE menu_bucket (
-    id_bucket VARCHAR(12) PRIMARY KEY,
-    nama_bucket VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    jumlah_potongan INT(2) NOT NULL,
-    harga DECIMAL(12,2) NOT NULL,
-    gambar VARCHAR(255),
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
+-- Bucket
+('MBU001', 'Bucket 6', '6 CHICKEN', 2, 125000.00, NULL, NULL, 6, NULL, NULL, 0, 1),
+('MBU002', 'Bucket 9', '9 CHICKEN', 2, 175000.00, NULL, NULL, 9, NULL, NULL, 0, 1),
+('MBU003', 'Bucket 12', '12 CHICKEN', 2, 200000.00, NULL, NULL, 12, NULL, NULL, 0, 1),
 
+-- Combo
+('MCO001', 'Super Besar 1', '1pc CHICKEN + 1 NASI + 1 MINUM + 1 SOP', 3, 40000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('MCO002', 'Super Besar 2', '2pc CHICKEN + 1 NASi + 1 MINUM + 1 SOP', 3, 52000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('MCO003', 'Super Family', '5pc CHICKEN + 3 NASI + 3 MINUM', 3, 120000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
 
--- Insert data for bucket menu
-INSERT INTO menu_bucket (id_bucket, nama_bucket, deskripsi, jumlah_potongan, harga, STATUS) VALUES
-('MBU001','Bucket 6', '9 CHICKEN', 6, 125000.00, 1),
-('MBU002','Bucket 9', '6 CHICKEn', 9, 175000.00, 1),
-('MBU003','Bucket 12', '12 CHICKEN', 12, 200000.00, 1);
+-- Breakfast
+('MBR001', 'Special Porridge', '1 Chicken Porridge + Hot Tea / Hot Coffee', 4, 22000.00, 'Sandwich', NULL, NULL, '04:00:00', '11:00:00', 0, 1),
 
-CREATE TABLE menu_alacarte_chicken (
-    id_alacarte VARCHAR(12) PRIMARY KEY,
-    nama_menu VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    jenis ENUM('Original', 'Crispy', 'Spicy') NOT NULL,
-    potongan ENUM('Dada', 'Paha', 'Sayap') NOT NULL,
-    harga DECIMAL(12,2) NOT NULL,
-    gambar VARCHAR(255),
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
+-- Coffee
+('MCF001', 'Coffee', 'Hot Coffee', 5, 12000.00, 'Hot', NULL, NULL, NULL, NULL, 0, 1),
+('MCF002', 'Coffee', 'Cold Coffee', 5, 12000.00, 'Cold', NULL, NULL, NULL, NULL, 0, 1),
 
--- Insert data for alacarte chicken
-INSERT INTO menu_alacarte_chicken (id_alacarte, nama_menu, deskripsi, jenis, potongan, harga, STATUS) VALUES
-('MAC001','Chicken Krispy', 'Rasa renyah dan agak pedas', 'Original', 'Dada', 20000.00, 1),
-('MAC002','Chicken ORI', 'Rasa renyah dan agak pedas', 'Crispy', 'Paha', 20000.00, 1);
+-- Kids Meal
+('MKM001', 'Chaki Kids Meal 1', '1 pc ayam Original + 1 nasi + 1 minuman + mainan', 6, 45000.00, NULL, NULL, NULL, NULL, NULL, 1, 1),
 
-CREATE TABLE menu_kids_meal (
-    id_kids VARCHAR(12) PRIMARY KEY,
-    nama_menu VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    id_drinks VARCHAR(12),
-    id_sides VARCHAR(12),
-    include_toy TINYINT(1) NOT NULL DEFAULT 1,
-    harga DECIMAL(12,2) NOT NULL,
-    gambar VARCHAR(255),
-    STATUS TINYINT(1) NOT NULL DEFAULT 1,
-    FOREIGN KEY (id_drinks) REFERENCES drinks(id_drinks),
-    FOREIGN KEY (id_sides) REFERENCES sides(id_sides)
-);
+-- Dessert
+('MDE001', 'Chocolate Sundae', 'Es krim vanilla dengan sirup coklat', 7, 12000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
 
--- Insert data for kids meal
-INSERT INTO menu_kids_meal (id_kids, nama_menu, deskripsi, id_drinks, id_sides, include_toy, harga, STATUS) VALUES
-('MKM001','Chaki Kids Meal 1', '1 pc ayam Original + 1 nasi + 1 minuman + mainan', 'DRI001', 'SID001', 1, 45000.00, 1);
+-- Special
+('MSP001', 'Jagoan Hemat 1', '1pc CHICKEN + 1 NASI + 1 MINUM', 8, 35000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('MSP002', 'Jagoan Hemat 2', '2pc CHICKEN + 1 NASI + 1 MINUM', 8, 45000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('MSP003', 'Jagoan Hemat 3', '1pc CHICKEN + 1 NASI', 8, 25000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
 
-CREATE TABLE menu_breakfast (
-    id_breakfast VARCHAR(12) PRIMARY KEY,
-    nama_menu VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    kategori ENUM('Sandwich', 'Rice Bowl', 'Platter') NOT NULL,
-    harga DECIMAL(12,2) NOT NULL,
-    waktu_mulai TIME NOT NULL,
-    waktu_selesai TIME NOT NULL,
-    gambar VARCHAR(255),
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
+-- Drinks
+('DRI001', 'Coca-Cola', 'Minuman bersoda', 9, 12000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('DRI002', 'Sprite', 'Minuman bersoda lemon', 9, 12000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('DRI003', 'Fanta', 'Minuman bersoda strawberry', 9, 12000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('DRI004', 'Air Mineral', 'Air mineral', 9, 8000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
 
--- Insert data for breakfast menu
-INSERT INTO menu_breakfast (id_breakfast, nama_menu, deskripsi, kategori, harga, waktu_mulai, waktu_selesai, STATUS) VALUES
-('MBR001','Special Porridge', '1 Chicken Porridge + Hot Tea / Hot Coffee', 'Sandwich', 22000.00, '04:00:00', '11:00:00', 1);
-
-CREATE TABLE menu_coffee (
-    id_coffee VARCHAR(12) PRIMARY KEY,
-    nama_menu VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    jenis ENUM('Hot', 'Cold') NOT NULL,
-    harga DECIMAL(12,2) NOT NULL,
-    gambar VARCHAR(255),
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
-
--- Insert data for coffee menu
-INSERT INTO menu_coffee (id_coffee,nama_menu, deskripsi, jenis, harga, STATUS) VALUES
-('MCF001','Coffee', 'Hot Coffee', 'Hot', 12000.00, 1),
-('MCF002','Coffee', 'Cold Coffee', 'Cold', 12000.00, 1);
-
-CREATE TABLE menu_dessert (
-    id_dessert VARCHAR(12) PRIMARY KEY,
-    nama_menu VARCHAR(255) NOT NULL,
-    deskripsi TEXT,
-    harga DECIMAL(12,2) NOT NULL,
-    gambar VARCHAR(255),
-    STATUS TINYINT(1) NOT NULL DEFAULT 1
-);
-
--- Insert data for dessert menu
-INSERT INTO menu_dessert (id_dessert, nama_menu, deskripsi, harga, STATUS) VALUES
-('MDE001','Chocolate Sundae', 'Es krim vanilla dengan sirup coklat', 12000.00, 1);
-
+-- Sides
+('SID001', 'Nasi', 'Nasi putih', 10, 8000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('SID002', 'French Fries', 'Kentang goreng', 10, 15000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('SID003', 'Perkedel', 'Perkedel kentang', 10, 6000.00, NULL, NULL, NULL, NULL, NULL, 0, 1),
+('SID004', 'Soup', 'Sup ayam', 10, 7000.00, NULL, NULL, NULL, NULL, NULL, 0, 1);
 -- Transaction related tables
 
 CREATE TABLE diskon (
