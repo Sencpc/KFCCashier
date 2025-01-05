@@ -2,13 +2,15 @@ DROP DATABASE IF EXISTS proyekpv;
 CREATE DATABASE proyekpv;
 USE proyekpv;
 
+SET FOREIGN_KEY_CHECKS=0;
+
 -- table cabang
 CREATE TABLE cabang(
     id_cabang INT(12)PRIMARY KEY AUTO_INCREMENT,
     nama_daerah VARCHAR(255)NOT NULL,
     jalan_cabang VARCHAR(255)NOT NULL,
     no_telp VARCHAR(30)NOT NULL
-)
+);
 
 INSERT INTO cabang(nama_daerah, jalan_cabang, no_telp) VALUES
 -- Jakarta Pusat (35 cabang)
@@ -323,35 +325,24 @@ INSERT INTO cabang(nama_daerah, jalan_cabang, no_telp) VALUES
 ('Solo', 'Solo Paragon Lt. 3', '(0271) 564455'),
 ('Solo', 'Jl. Adi Sucipto No. 89', '(0271) 568899');
 
--- Core tables
-CREATE TABLE customer (
-    id_customer INT(12) PRIMARY KEY AUTO_INCREMENT,
-    firstName VARCHAR(50) NOT NULL,
-    lastName VARCHAR(50),
-    no_telp VARCHAR(30) NOT NULL UNIQUE
-);
-
--- Insert data into customer table
-INSERT INTO customer (firstName, lastName, no_telp) VALUES
-('Budi', 'Santoso', '081234567890'),
-('Siti', 'Rahayu', '081234567891'),
-('Dedi', 'Kurniawan', '081234567892');
 
 CREATE TABLE karyawan (
     id_pegawai INT(11) PRIMARY KEY AUTO_INCREMENT,
+    id_cabang INT(12),
     fullName VARCHAR(255) NOT NULL,
     username_karyawan VARCHAR(255) NOT NULL UNIQUE,
     password_karyawan VARCHAR(255) NOT NULL,
     jabatan VARCHAR(20) NOT NULL,
-    STATUS ENUM('Aktif', 'Nonaktif') NOT NULL
+    STATUS ENUM('Aktif', 'Nonaktif') NOT NULL,
+    FOREIGN KEY (id_cabang) REFERENCES cabang(id_cabang)
 );
 
 -- Insert data into karyawan table
-INSERT INTO karyawan (fullName, username_karyawan, password_karyawan, jabatan, STATUS) VALUES
-('Tegar Gilang', 'tegar1', '123', 'Admin', 'Aktif'),
-('Nicholas Nathanael', 'nicho1', '1234', 'Kasir', 'Aktif'),
-('Sebastian Tjandra', 'sebas1', '12345', 'Kasir', 'Aktif'),
-('Sean Cornelius', 'sean1', '123456', 'Manager', 'Aktif');
+INSERT INTO karyawan (id_cabang ,fullName, username_karyawan, password_karyawan, jabatan, STATUS) VALUES
+(5,'Tegar Gilang', 'tegar1', '123', 'Admin', 'Aktif'),
+(8,'Nicholas Nathanael', 'nicho1', '1234', 'Kasir', 'Aktif'),
+(11,'Sebastian Tjandra', 'sebas1', '12345', 'Kasir', 'Aktif'),
+(21,'Sean Cornelius', 'sean1', '123456', 'Manager', 'Aktif');
 
 -- Base items tables
 CREATE TABLE sides (
@@ -656,7 +647,7 @@ CREATE TABLE d_menu(
 INSERT INTO d_menu (id_menu_utama, id_bahan, qty) VALUES
 (1, 1, 9),  -- Bucket 9, 9 potong ayam dari 'Upper Chicken Breast'
 (2, 3, 6),  -- Bucket 6, 6 potong ayam dari 'Upper Chicken Thigh'
-(3, 10, 12) -- Wings Bucket, 12 pc spicy wings dari 'Chicken Wings'
+(3, 10, 12); -- Wings Bucket, 12 pc spicy wings dari 'Chicken Wings'
 
 CREATE TABLE d_trans (
     id_dtrans INT(20) PRIMARY KEY AUTO_INCREMENT,
@@ -673,3 +664,5 @@ INSERT INTO d_trans (id_htrans, id_menu, qty, subtotal) VALUES
 (1, 3, 1, 225000.00),
 (2, 4, 1,175000.00),
 (3, 5, 1,85000.00);
+
+SET FOREIGN_KEY_CHECKS=1;
