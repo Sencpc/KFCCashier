@@ -24,6 +24,8 @@ namespace KFC
         {
             koneksi.setupConn();
             dgvOrder.DataSource = dtCart;
+            numericUpDown1.Enabled = false;
+            button4.Enabled = false;
         }
 
         //tombol home
@@ -34,5 +36,14 @@ namespace KFC
             this.Hide();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
