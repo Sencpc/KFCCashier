@@ -14,89 +14,13 @@ namespace KFC
         public DataTable showMenu (string kategori = "")
         {
             string query =
-                @"SELECT mac.nama_menu AS 'Nama Menu', mac.deskripsi AS 'Deskripsi', mac.harga AS 'Price', 'Alacarte Chicken' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_alacarte_chicken mac ON mac.id_alacarte = mu.list_id
-                UNION ALL
-                SELECT mbu.nama_bucket AS 'Nama Menu', mbu.deskripsi AS 'Deskripsi', mbu.harga AS 'Price', 'Bucket' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_bucket mbu ON mbu.id_bucket = mu.list_id
-                UNION ALL
-                SELECT mco.nama_combo AS 'Nama Menu', mco.deskripsi AS 'Deskripsi', mco.harga AS 'Price', 'Combo' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_combo mco ON mco.id_combo = mu.list_id
-                UNION ALL
-                SELECT mbr.nama_menu AS 'Nama Menu', mbr.deskripsi AS 'Deskripsi', mbr.harga AS 'Price', 'Breakfast' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_breakfast mbr ON mbr.id_breakfast = mu.list_id
-                UNION ALL
-                SELECT mcf.nama_menu AS 'Nama Menu', mcf.deskripsi AS 'Deskripsi', mcf.harga AS 'Price', 'Coffee' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_coffee mcf ON mcf.id_coffee = mu.list_id
-                UNION ALL
-                SELECT mkm.nama_menu AS 'Nama Menu', mkm.deskripsi AS 'Deskripsi', mkm.harga AS 'Price', 'Kids Meal' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_kids_meal mkm ON mkm.id_kids = mu.list_id
-                UNION ALL
-                SELECT mde.nama_menu AS 'Nama Menu', mde.deskripsi AS 'Deskripsi', mde.harga AS 'Price', 'Dessert' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_dessert mde ON mde.id_dessert = mu.list_id
-                UNION ALL
-                SELECT msp.nama_menu AS 'Nama Menu', msp.deskripsi AS 'Deskripsi', msp.harga AS 'Price', 'Spesial' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN menu_spesial msp ON msp.id_spesial = mu.list_id
-                UNION ALL
-                SELECT d.nama_drinks AS 'Nama Menu', d.deskripsi AS 'Deskripsi', d.harga AS 'Price', 'Drinks' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN drinks d ON d.id_drinks = mu.list_id
-                UNION ALL
-                SELECT s.nama_sides AS 'Nama Menu', s.deskripsi AS 'Deskripsi', s.harga AS 'Price', 'Sides' AS 'Kategori'
-                FROM menu_utama mu
-                JOIN sides s ON s.id_sides = mu.list_id";
+                "SELECT m.nama_menu AS Menu, m.deskripsi AS DESCRIPTION , m.harga AS Price , k.nama_kategori AS Category " +
+                "FROM menu m " +
+                "JOIN kategori k ON k.id_kategori = m.id_kategori";
 
             if (!string.IsNullOrEmpty(kategori))
             {
-                query = "SELECT * FROM " +
-                    "(SELECT mac.nama_menu AS \"Nama Menu\", mac.deskripsi AS 'Deskripsi', mac.harga AS Price, 'Alacarte Chicken' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_alacarte_chicken mac ON mac.id_alacarte = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT mbu.nama_bucket AS \"Nama Menu\", mbu.deskripsi AS 'Deskripsi', mbu.harga AS Price, 'Bucket' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_bucket mbu ON mbu.id_bucket = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT mco.nama_combo AS \"Nama Menu\", mco.deskripsi AS 'Deskripsi', mco.harga AS Price, 'Combo' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_combo mco ON mco.id_combo = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT mbr.nama_menu AS \"Nama Menu\", mbr.deskripsi AS 'Deskripsi', mbr.harga AS Price, 'Breakfast' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_breakfast mbr ON mbr.id_breakfast = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT mcf.nama_menu AS \"Nama Menu\", mcf.deskripsi AS 'Deskripsi', mcf.harga AS Price, 'Coffee' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_coffee mcf ON mcf.id_coffee = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT mkm.nama_menu AS \"Nama Menu\", mkm.deskripsi AS 'Deskripsi', mkm.harga AS Price, 'Kids Meal' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_kids_meal mkm ON mkm.id_kids = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT mde.nama_menu AS \"Nama Menu\", mde.deskripsi AS 'Deskripsi', mde.harga AS Price, 'Dessert' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_dessert mde ON mde.id_dessert = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT msp.nama_menu AS \"Nama Menu\", msp.deskripsi AS 'Deskripsi', msp.harga AS Price, 'Spesial' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN menu_spesial msp ON msp.id_spesial = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT d.nama_drinks AS \"Nama Menu\", d.deskripsi AS 'Deskripsi', d.harga AS Price, 'Drinks' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN drinks d ON d.id_drinks = mu.list_id" +
-                    " UNION ALL" +
-                    " SELECT s.nama_sides AS \"Nama Menu\", s.deskripsi AS 'Deskripsi', s.harga AS Price, 'Sides' AS Kategori" +
-                    " FROM menu_utama mu" +
-                    " JOIN sides s ON s.id_sides = mu.list_id) AS full_menu" +
-                    " WHERE full_menu.Kategori = @kategori;";
+                query += " WHERE k.nama_kategori = @kategori";
             }
 
             // kalo ada keyword di parameternya
