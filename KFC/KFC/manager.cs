@@ -79,9 +79,8 @@ namespace KFC
         //logOut ke halaman login
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 login = new Form1();
-            login.ShowDialog();
-            this.Hide();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         //Buka form monitoring

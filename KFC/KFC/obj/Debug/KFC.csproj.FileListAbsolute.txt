@@ -143,3 +143,4 @@ C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\obj\Debug\KFC.csproj.Up2Date
 C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\obj\Debug\KFC.exe
 C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\obj\Debug\KFC.pdb
 C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\obj\Debug\KFC.monitoring.resources
+C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.monitoring.resources

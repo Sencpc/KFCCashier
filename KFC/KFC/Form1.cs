@@ -54,16 +54,24 @@ namespace KFC
                     koneksi.getConn().Close();
                     Kasir k = new Kasir(fullName);
                     this.Hide();
-                    k.ShowDialog();
-                    k.Close();
+                    DialogResult dr = k.ShowDialog();
+                    if(dr == DialogResult.OK)
+                    {
+                        this.Show();
+                    }
                 }
                 else if (karyawan.jabatanCheck(username, password).Equals("Manager") || karyawan.jabatanCheck(username, password).Equals("Admin")) {
                     koneksi.getConn().Close();
                     manager m = new manager(fullName);
                     this.Hide();
-                    m.ShowDialog();
-                    m.Close();
+                    DialogResult dr = m.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        this.Show();
+                    }
                 }
+                textBox1.Text = "";
+                textBox2.Text = "";
             }
             else
             {
