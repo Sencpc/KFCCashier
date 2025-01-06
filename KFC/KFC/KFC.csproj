@@ -95,6 +95,12 @@
       <DependentUpon>manager.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs" />
+    <Compile Include="monitoring.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="monitoring.Designer.cs">
+      <DependentUpon>monitoring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CrystalReport1.rpt">
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="manager.resx">
       <DependentUpon>manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="monitoring.resx">
+      <DependentUpon>monitoring.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

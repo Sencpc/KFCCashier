@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace KFC
 {
@@ -17,8 +18,27 @@ namespace KFC
             InitializeComponent();
             disableButton();
             label1.Text ="Welcome, "+user;
+            koneksi.setupConn();
+            LoadKategori();
         }
 
+        public void LoadKategori()
+        {
+            koneksi.getConn().Open();
+
+            string query = "SELECT id_kategori, nama_kategori FROM kategori";
+            MySqlCommand command = new MySqlCommand(query, koneksi.getConn());
+            MySqlDataReader reader = command.ExecuteReader();
+
+            DataTable kategoriTable = new DataTable();
+            kategoriTable.Load(reader);
+            reader.Close();
+            koneksi.getConn().Close();
+
+            comboBox1.DataSource = kategoriTable;
+            comboBox1.DisplayMember = "nama_kategori";
+            comboBox1.ValueMember = "id_kategori";
+        }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
@@ -62,6 +82,39 @@ namespace KFC
             Form1 login = new Form1();
             login.ShowDialog();
             this.Hide();
+        }
+
+        //Buka form monitoring
+        private void button2_Click(object sender, EventArgs e)
+        {
+            monitoring monitor = new monitoring();
+            monitor.ShowDialog();
+        }
+
+        //kepencet
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            checkBox2.Checked = false;
+        }
+
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;
         }
     }
 }

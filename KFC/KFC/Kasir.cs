@@ -139,7 +139,7 @@ namespace KFC
             resetMenu();
         }
 
-        //fiter button Burger
+        //fiter button Sides
         private void button4_Click(object sender, EventArgs e)
         {
             koneksi.getConn().Open();
