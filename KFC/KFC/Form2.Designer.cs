@@ -127,6 +127,7 @@ namespace KFC
             this.dgvOrder.RowTemplate.Height = 28;
             this.dgvOrder.Size = new System.Drawing.Size(953, 538);
             this.dgvOrder.TabIndex = 6;
+            this.dgvOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellContentClick);
             // 
             // button4
             // 

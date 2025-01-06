@@ -49,7 +49,7 @@ namespace KFC
 
             if (dt.Rows.Count > 0)
             {
-                if (karyawan.jabatanCheck(username, password).Equals("Kasir"))
+                if (karyawan.jabatanCheck(username, password).Equals("Kasir") && dt.Rows[0][6].ToString().Equals("Aktif"))
                 {
                     koneksi.getConn().Close();
                     Kasir k = new Kasir(fullName);
@@ -60,7 +60,7 @@ namespace KFC
                         this.Show();
                     }
                 }
-                else if (karyawan.jabatanCheck(username, password).Equals("Manager") || karyawan.jabatanCheck(username, password).Equals("Admin")) {
+                else if ((karyawan.jabatanCheck(username, password).Equals("Manager") || karyawan.jabatanCheck(username, password).Equals("Admin")) && dt.Rows[0][6].ToString().Equals("Aktif")) {
                     koneksi.getConn().Close();
                     manager m = new manager(fullName);
                     this.Hide();
@@ -69,6 +69,11 @@ namespace KFC
                     {
                         this.Show();
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Akun anda tidak aktif.", "Login Gagal "+ dt.Rows[0][5].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    koneksi.getConn().Close();
                 }
                 textBox1.Text = "";
                 textBox2.Text = "";

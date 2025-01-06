@@ -17,12 +17,23 @@ namespace KFC
         Design d = new Design();
         Menu menu = new Menu();
         DataTable menuUtama = new DataTable();
+        DataTable menuAll = new DataTable();
         DataTable dtCart = new DataTable();
         public Kasir(string user)
         {
             InitializeComponent();
             koneksi.setupConn();
             label1.Text = user;
+            koneksi.getConn().Open();
+            menuAll = menu.showMenu();
+            koneksi.getConn().Close();
+
+            dtCart.Columns.Add("Id", typeof(string));
+            dtCart.Columns.Add("Nama menu", typeof(string));
+            dtCart.Columns.Add("Deskripsi", typeof(string));
+            dtCart.Columns.Add("Jumlah", typeof(int));
+            dtCart.Columns.Add("Harga", typeof(string));
+            dtCart.Columns.Add("Subtotal", typeof(string));
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -42,9 +53,16 @@ namespace KFC
 
         private void label3_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2(dtCart);
-            form2.ShowDialog();
-            form2.Close();
+            if (dtCart.Rows.Count == 0)
+            {
+                MessageBox.Show("Cart is empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                Form2 form2 = new Form2(dtCart);
+                form2.ShowDialog();
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -56,6 +74,8 @@ namespace KFC
             int t = -1;
             for (int i = 0 ;i < menuUtama.Rows.Count ; i++)
             {
+                int id = int.Parse(menuUtama.Rows[i][0].ToString());
+
                 int j = 0;
                 if (i % 2 == 1)
                 {
@@ -69,7 +89,7 @@ namespace KFC
                 Panel nwpl = new Panel();
                 nwpl.BackColor = System.Drawing.Color.White;
                 nwpl.Location = new System.Drawing.Point(34 + j * 340, 10 + t * 340);
-                nwpl.Name = "panelMenu" + i;
+                nwpl.Name = "panelMenu" + id;
                 nwpl.Size = new System.Drawing.Size(322, 326);
                 nwpl.TabIndex = 11;
 
@@ -77,34 +97,34 @@ namespace KFC
                 nwlb.AutoSize = true;
                 nwlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 nwlb.Location = new System.Drawing.Point(23, 161);
-                nwlb.Name = "labelNama" + i;
+                nwlb.Name = "labelNama" + id;
                 nwlb.Size = new System.Drawing.Size(161, 29);
                 nwlb.TabIndex = 2;
-                nwlb.Text = menuUtama.Rows[i][0].ToString();
+                nwlb.Text = menuUtama.Rows[i][1].ToString();
                 nwpl.Controls.Add(nwlb);
 
                 Label nwlb2 = new Label();
                 nwlb2.Location = new System.Drawing.Point(28, 194);
-                nwlb2.Name = "labelDesk" + i;
+                nwlb2.Name = "labelDesk" + id;
                 nwlb2.Size = new System.Drawing.Size(275, 75);
                 nwlb2.TabIndex = 3;
-                nwlb2.Text = menuUtama.Rows[i][1].ToString();
+                nwlb2.Text = menuUtama.Rows[i][2].ToString();
                 nwpl.Controls.Add(nwlb2);
 
                 Label nwlb3 = new Label();
                 nwlb3.BackColor = System.Drawing.Color.White;
                 nwlb3.ForeColor = System.Drawing.Color.Red;
                 nwlb3.Location = new System.Drawing.Point(23, 282);
-                nwlb3.Name = "labelHarga" + i;
+                nwlb3.Name = "labelHarga" + id;
                 nwlb3.Size = new System.Drawing.Size(152, 29);
                 nwlb3.TabIndex = 4;
-                nwlb3.Text = "Rp "+menuUtama.Rows[i][2].ToString();
+                nwlb3.Text = "Rp "+menuUtama.Rows[i][3].ToString();
                 nwpl.Controls.Add(nwlb3);
 
                 PictureBox nwpb = new PictureBox();
                 //nwpb.Image = Image.FromFile("C:\\Users\\seanc\\Downloads\\6b061175-ed79-daf0-5aab-f1026a9b657a.png");
                 nwpb.Location = new System.Drawing.Point(19, 16);
-                nwpb.Name = "gambarMenu" + i;
+                nwpb.Name = "gambarMenu" + id;
                 nwpb.Size = new System.Drawing.Size(284, 131);
                 nwpb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
                 nwpb.TabIndex = 0;
@@ -113,7 +133,7 @@ namespace KFC
 
                 Button nwbtn = new Button();
                 nwbtn.Location = new System.Drawing.Point(181, 272);
-                nwbtn.Name = "btnBuy" + i;
+                nwbtn.Name = "btnBuy" + id;
                 nwbtn.Size = new System.Drawing.Size(122, 39);
                 nwbtn.TabIndex = 1;
                 nwbtn.Text = "Buy";
@@ -128,7 +148,36 @@ namespace KFC
         //buat ngeadd ke cart
         private void btnBuy_Click(object sender, EventArgs e)
         {
-
+            string nameSubstring = ((Button)sender).Name.ToString().Substring(6);
+            if (int.TryParse(nameSubstring, out int id))
+            {
+                bool isExist = false;
+                for (int i = 0; i < dtCart.Rows.Count; i++)
+                {
+                    if (dtCart.Rows[i][0].ToString().Equals(id.ToString()))
+                    {
+                        isExist = true;
+                        dtCart.Rows[i][3] = int.Parse(dtCart.Rows[i][3].ToString()) + 1;
+                        dtCart.Rows[i][5] = (int.Parse(GetNumbers(dtCart.Rows[i][5].ToString())) + int.Parse(GetNumbers(dtCart.Rows[i][4].ToString()))).ToString();
+                        break;
+                    }
+                }
+                if (!isExist)
+                {
+                    DataRow dr = dtCart.NewRow();
+                    dr[0] = id.ToString();
+                    dr[1] = menuAll.Rows[id][1].ToString();
+                    dr[2] = menuAll.Rows[id][2].ToString();
+                    dr[3] = 1;
+                    dr[4] = menuAll.Rows[id][3].ToString();
+                    dr[5] = menuAll.Rows[id][3].ToString();
+                    dtCart.Rows.Add(dr);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid format for Name property.");
+            }
         }
 
         //fiter button ALL
@@ -175,6 +224,10 @@ namespace KFC
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+        private static string GetNumbers(string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c)).ToArray());
         }
     }
 }

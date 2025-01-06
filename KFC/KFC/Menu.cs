@@ -14,7 +14,7 @@ namespace KFC
         public DataTable showMenu (string kategori = "")
         {
             string query =
-                "SELECT m.nama_menu AS Menu, m.deskripsi AS DESCRIPTION , m.harga AS Price , k.nama_kategori AS Category " +
+                "SELECT m.id_menu AS id, m.nama_menu AS Menu, m.deskripsi AS DESCRIPTION , m.harga AS Price , k.nama_kategori AS Category " +
                 "FROM menu m " +
                 "JOIN kategori k ON k.id_kategori = m.id_kategori";
 
