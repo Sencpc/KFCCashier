@@ -31,9 +31,8 @@ namespace KFC
         //tombol home
         private void label2_Click(object sender, EventArgs e)
         {
-            Form1 home = new Form1();
-            home.ShowDialog();
-            this.Hide();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -43,7 +42,9 @@ namespace KFC
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Cetakan cetak = new Cetakan(1);
+            cetak.ShowDialog();
+            cetak.Close();
         }
     }
 }
