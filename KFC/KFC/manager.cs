@@ -38,6 +38,7 @@ namespace KFC
             comboBox1.DataSource = kategoriTable;
             comboBox1.DisplayMember = "nama_kategori";
             comboBox1.ValueMember = "id_kategori";
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
