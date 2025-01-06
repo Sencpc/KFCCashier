@@ -79,7 +79,6 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratorID.cs" />
     <Compile Include="Karyawan.cs" />
     <Compile Include="Kasir.cs">
       <SubType>Form</SubType>
