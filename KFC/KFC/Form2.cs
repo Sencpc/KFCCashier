@@ -47,7 +47,7 @@ namespace KFC
                     return;
                 }
                 dtCart.Rows[selected]["Jumlah"] = numericUpDown1.Value;
-                dtCart.Rows[selected]["Subtotal"] = Convert.ToInt32(dtCart.Rows[selected]["Harga"]) * Convert.ToInt32(dtCart.Rows[selected]["Jumlah"]);
+                dtCart.Rows[selected]["Subtotal"] = Convert.ToInt32(GetNumbers(dtCart.Rows[selected]["Harga"].ToString())) * Convert.ToInt32(GetNumbers(dtCart.Rows[selected]["Jumlah"].ToString()));
                 dgvOrder.DataSource = dtCart;
                 numericUpDown1.Enabled = false;
                 button4.Enabled = false;
@@ -57,21 +57,33 @@ namespace KFC
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Cetakan cetak = new Cetakan(1);
-            cetak.ShowDialog();
-            cetak.Close();
+            if(dtCart.Rows.Count > 0)
+            {
+                MessageBox.Show("Cart is empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                Cetakan cetak = new Cetakan(1);
+                cetak.ShowDialog();
+                cetak.Close();
+            }
         }
 
         private void dgvOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0)
             {
-                DataGridViewRow row = this.dgvOrder.Rows[e.RowIndex];
                 button4.Enabled = true;
                 numericUpDown1.Enabled = true;
-                numericUpDown1.Value = Convert.ToInt32(row.Cells["Jumlah"].Value);
+                numericUpDown1.Value = Convert.ToInt32(dtCart.Rows[e.RowIndex]["Jumlah"].ToString());
                 selected = e.RowIndex;
             }
+        }
+
+        private static string GetNumbers(string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c)).ToArray());
         }
     }
 }
