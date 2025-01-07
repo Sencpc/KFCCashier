@@ -358,8 +358,8 @@ CREATE TABLE menu (
 
 INSERT INTO menu (nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jumlah_potongan, include_toy, STATUS) VALUES
 -- Alacarte Chicken
-('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Crispy', 'Dada', 1, 0, 1),
-('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Crispy', 'Paha', 1, 0, 1),
+('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 28000.00, 'Crispy', 'Dada', 1, 0, 1),
+('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 23000.00, 'Crispy', 'Paha', 1, 0, 1),
 ('Chicken ORI', 'Rasa original authentic', 1, 25000.00, 'Original', 'Dada', 1, 0, 1),
 ('Chicken ORI', 'Rasa original authentic', 1, 20000.00, 'Original', 'Paha', 1, 0, 1),
 
@@ -398,7 +398,7 @@ INSERT INTO menu (nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jum
 ('Air Mineral', 'Air mineral', 9, 8000.00, NULL, NULL, NULL, 0, 1),
 
 -- Sides
-('Nasi', 'Nasi putih', 10, 8000.00, NULL, NULL, NULL, 0, 1),
+('Nasi', 'Nasi putih', 10, 5000.00, NULL, NULL, NULL, 0, 1),
 ('French Fries', 'Kentang goreng', 10, 15000.00, NULL, NULL, NULL, 0, 1),
 ('Perkedel', 'Perkedel kentang', 10, 6000.00, NULL, NULL, NULL, 0, 1),
 ('Soup', 'Sup ayam', 10, 7000.00, NULL, NULL, NULL, 0, 1);
@@ -408,15 +408,15 @@ CREATE TABLE diskon (
     nama_diskon VARCHAR(255) NOT NULL,
     nominal DECIMAL(20,2) NOT NULL,
     diskon_type ENUM('Persen', 'Nominal') NOT NULL,
-    min_voucher INT(9),
     status_diskon ENUM('Aktif', 'Nonaktif') NOT NULL
 );
 
 -- Insert data into diskon table
-INSERT INTO diskon (nama_diskon, nominal, diskon_type, min_voucher, status_diskon) VALUES
-('Monday Special', 10.00, 'Persen', 1, 'Aktif'),
-('Super Sunday', 25000.00, 'Nominal', 2, 'Aktif'),
-('Birthday Special', 15.00, 'Persen', 1, 'Aktif');
+INSERT INTO diskon (nama_diskon, nominal, diskon_type, status_diskon) VALUES
+('Normal', 0.00, 'Nominal', 'Aktif'),
+('Monday Special', 10.00, 'Persen', 'Aktif'),
+('Super Sunday', 25000.00, 'Nominal', 'Aktif'),
+('Birthday Special', 15.00, 'Persen', 'Aktif');
 
 CREATE TABLE kategori(
 	id_kategori INT(12)PRIMARY KEY AUTO_INCREMENT,
@@ -436,39 +436,22 @@ INSERT INTO kategori(nama_kategori) VALUES
 ('Sides');
 
 
-CREATE TABLE voucher (
-    id_voucher VARCHAR(12) PRIMARY KEY,
-    diskon_id INT(12) NOT NULL,
-    customer_id INT(12) NOT NULL,
-    jmlh_voucher INT(12) NOT NULL,
-    status_voucher ENUM('Aktif', 'Nonaktif') NOT NULL,
-    FOREIGN KEY (diskon_id) REFERENCES diskon(id_diskon),
-    FOREIGN KEY (customer_id) REFERENCES customer(id_customer)
-);
-
--- Insert data into voucher table
-INSERT INTO voucher (id_voucher, diskon_id, customer_id, jmlh_voucher, status_voucher) VALUES
-('VCR001', 1, 1, 2, 'Aktif'),
-('VCR002', 2, 2, 3, 'Aktif'),
-('VCR003', 3, 3, 1, 'Aktif');
-
 CREATE TABLE h_trans (
     id_htrans INT(20) PRIMARY KEY AUTO_INCREMENT,
     tanggal_transaksi DATE NOT NULL,
     id_karyawan INT(11) NOT NULL,
     total_harga DECIMAL(12,2) NOT NULL,
-    id_voucher VARCHAR(12),
+    id_diskon INT(12),
     total_diskon DECIMAL(12,2) NOT NULL,
-    status_transaksi ENUM('Lunas', 'Belum Lunas', 'Dibatalkan') NOT NULL,
     FOREIGN KEY (id_karyawan) REFERENCES karyawan(id_pegawai),
-    FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher)
+    FOREIGN KEY (id_diskon) REFERENCES diskon(id_diskon)
 );
 
 -- Insert data into h_trans table
-INSERT INTO h_trans (tanggal_transaksi, id_karyawan, total_harga, id_voucher, total_diskon, status_transaksi) VALUES
-('2024-12-19', 1, 225000.00, 'VCR001', 25000.00, 'Lunas'),
-('2024-12-19', 2, 175000.00, 'VCR002', 25000.00, 'Lunas'),
-('2024-12-19', 3, 85000.00, 'VCR003', 40000.00, 'Lunas');
+INSERT INTO h_trans (tanggal_transaksi, id_karyawan, total_harga, id_diskon, total_diskon) VALUES
+('2024-12-19', 1, 225000.00, 2, 25000.00),
+('2024-12-19', 2, 175000.00, 3, 25000.00),
+('2024-12-19', 3, 85000.00, 4, 40000.00);
 
 CREATE TABLE stock(
     id_bahan INT(12) PRIMARY KEY AUTO_INCREMENT,
@@ -503,8 +486,165 @@ CREATE TABLE d_trans (
 
 -- Insert data into d_trans table
 INSERT INTO d_trans (id_htrans, id_menu, qty, subtotal) VALUES
-(1, 3, 10,25000.00),
-(2, 4, 10,20000.00),
+(1, 3, 1,25000.00),
+(1, 6, 1,175000.00),
+(1, 23, 7,35000.00),
+(1, 24, 1,15000.00),
+(2, 4, 1,20000.00),
+(2, 17, 4,180000.00),
 (3, 5, 1,125000.00);
+
+-- Create the menu_ingredients table
+CREATE TABLE menu_ingredients (
+    id_menu INT,
+    id_stock INT,
+    qty INT,
+    FOREIGN KEY (id_menu) REFERENCES menu(id_menu),
+    FOREIGN KEY (id_stock) REFERENCES stock(id_bahan)
+);
+
+-- Insert menu ingredients mapping
+INSERT INTO menu_ingredients (id_menu, id_stock, qty) VALUES
+-- Alacarte Chicken
+(1, 3, 1),    -- Chicken Krispy Dada
+(2, 4, 1),    -- Chicken Krispy Paha
+(3, 1, 1),    -- Chicken ORI Dada
+(4, 2, 1),    -- Chicken ORI Paha
+
+-- Bucket 6
+(5, 1, 3),    -- 3 Dada Original
+(5, 2, 3),    -- 3 Paha Original
+
+-- Bucket 9
+(6, 1, 5),    -- 5 Dada Original
+(6, 2, 4),    -- 4 Paha Original
+
+-- Bucket 12
+(7, 1, 6),    -- 6 Dada Original
+(7, 2, 6),    -- 6 Paha Original
+
+-- Super Besar 1
+(8, 1, 1),    -- 1 Dada Original
+(8, 5, 1),    -- 1 Nasi
+(8, 6, 1),    -- 1 Coca-Cola (default drink)
+
+-- Super Besar 2
+(9, 1, 2),    -- 2 Dada Original
+(9, 5, 1),    -- 1 Nasi
+(9, 6, 1),    -- 1 Coca-Cola (default drink)
+
+-- Super Family
+(10, 1, 3),   -- 3 Dada Original
+(10, 2, 2),   -- 2 Paha Original
+(10, 5, 3),   -- 3 Nasi
+(10, 6, 3),   -- 3 Coca-Cola (default drink)
+
+-- Special Porridge
+(11, 9, 1),   -- 1 Porridge
+(11, 10, 1),  -- 1 Coffee
+
+-- Coffee
+(12, 10, 1),  -- Hot Coffee
+(13, 10, 1),  -- Cold Coffee
+
+-- Chaki Kids Meal 1
+(14, 1, 1),   -- 1 Dada Original
+(14, 5, 1),   -- 1 Nasi
+(14, 6, 1),   -- 1 Coca-Cola (default drink)
+
+-- Chocolate Sundae
+(15, 11, 1),  -- 1 Sundae
+
+-- Jagoan Hemat 1
+(16, 1, 1),   -- 1 Dada Original
+(16, 5, 1),   -- 1 Nasi
+(16, 6, 1),   -- 1 Coca-Cola (default drink)
+
+-- Jagoan Hemat 2
+(17, 1, 2),   -- 2 Dada Original
+(17, 5, 1),   -- 1 Nasi
+(17, 6, 1),   -- 1 Coca-Cola (default drink)
+
+-- Jagoan Hemat 3
+(18, 1, 1),   -- 1 Dada Original
+(18, 5, 1),   -- 1 Nasi
+
+-- Individual Drinks
+(19, 6, 1),   -- Coca-Cola
+(20, 8, 1),   -- Sprite
+(21, 7, 1),   -- Fanta
+
+-- Individual Sides
+(23, 5, 1);   -- Nasi
+
+DELIMITER //
+
+CREATE PROCEDURE reduce_stock(
+    IN p_menu_id INT,
+    IN p_quantity INT
+)
+BEGIN
+    DECLARE v_done INT DEFAULT FALSE;
+    DECLARE v_stock_id INT;
+    DECLARE v_required_qty INT;
+    
+    DECLARE cur CURSOR FOR 
+        SELECT id_stock, qty 
+        FROM menu_ingredients 
+        WHERE id_menu = p_menu_id;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = TRUE;
+    
+    START TRANSACTION;
+    
+    OPEN cur;
+    
+    ingredients_loop: LOOP
+        FETCH cur INTO v_stock_id, v_required_qty;
+        
+        IF v_done THEN
+            LEAVE ingredients_loop;
+        END IF;
+        
+        UPDATE stock 
+        SET qty = qty - (v_required_qty * p_quantity)
+        WHERE id_bahan = v_stock_id;
+        
+        IF (SELECT qty FROM stock WHERE id_bahan = v_stock_id) < 0 THEN
+            ROLLBACK;
+            SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Insufficient stock';
+        END IF;
+    END LOOP;
+    
+    CLOSE cur;
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE
+    FUNCTION check_stock_availability(
+    p_menu_id INT,
+    p_quantity INT
+    )
+    RETURNS BOOLEAN
+    DETERMINISTIC
+    BEGIN
+        DECLARE v_available BOOLEAN DEFAULT TRUE;
+        
+        SELECT CASE WHEN COUNT(*) > 0 THEN FALSE ELSE TRUE END
+        INTO v_available
+        FROM menu_ingredients mi
+        JOIN stock s ON mi.id_stock = s.id_bahan
+        WHERE mi.id_menu = p_menu_id
+        AND s.qty < (mi.qty * p_quantity);
+        
+        RETURN v_available;
+    END //
+
+DELIMITER ;
 
 SET FOREIGN_KEY_CHECKS=1;
