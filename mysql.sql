@@ -408,15 +408,15 @@ CREATE TABLE diskon (
     nama_diskon VARCHAR(255) NOT NULL,
     nominal DECIMAL(20,2) NOT NULL,
     diskon_type ENUM('Persen', 'Nominal') NOT NULL,
-    min_voucher INT(9),
     status_diskon ENUM('Aktif', 'Nonaktif') NOT NULL
 );
 
 -- Insert data into diskon table
-INSERT INTO diskon (nama_diskon, nominal, diskon_type, min_voucher, status_diskon) VALUES
-('Monday Special', 10.00, 'Persen', 1, 'Aktif'),
-('Super Sunday', 25000.00, 'Nominal', 2, 'Aktif'),
-('Birthday Special', 15.00, 'Persen', 1, 'Aktif');
+INSERT INTO diskon (nama_diskon, nominal, diskon_type, status_diskon) VALUES
+('Normal', 0.00, 'Nominal', 'Aktif'),
+('Monday Special', 10.00, 'Persen', 'Aktif'),
+('Super Sunday', 25000.00, 'Nominal', 'Aktif'),
+('Birthday Special', 15.00, 'Persen', 'Aktif');
 
 CREATE TABLE kategori(
 	id_kategori INT(12)PRIMARY KEY AUTO_INCREMENT,
@@ -436,39 +436,22 @@ INSERT INTO kategori(nama_kategori) VALUES
 ('Sides');
 
 
-CREATE TABLE voucher (
-    id_voucher VARCHAR(12) PRIMARY KEY,
-    diskon_id INT(12) NOT NULL,
-    customer_id INT(12) NOT NULL,
-    jmlh_voucher INT(12) NOT NULL,
-    status_voucher ENUM('Aktif', 'Nonaktif') NOT NULL,
-    FOREIGN KEY (diskon_id) REFERENCES diskon(id_diskon),
-    FOREIGN KEY (customer_id) REFERENCES customer(id_customer)
-);
-
--- Insert data into voucher table
-INSERT INTO voucher (id_voucher, diskon_id, customer_id, jmlh_voucher, status_voucher) VALUES
-('VCR001', 1, 1, 2, 'Aktif'),
-('VCR002', 2, 2, 3, 'Aktif'),
-('VCR003', 3, 3, 1, 'Aktif');
-
 CREATE TABLE h_trans (
     id_htrans INT(20) PRIMARY KEY AUTO_INCREMENT,
     tanggal_transaksi DATE NOT NULL,
     id_karyawan INT(11) NOT NULL,
     total_harga DECIMAL(12,2) NOT NULL,
-    id_voucher VARCHAR(12),
+    id_diskon INT(12),
     total_diskon DECIMAL(12,2) NOT NULL,
-    status_transaksi ENUM('Lunas', 'Belum Lunas', 'Dibatalkan')DEFAULT 'Belum Lunas' NOT NULL,
     FOREIGN KEY (id_karyawan) REFERENCES karyawan(id_pegawai),
-    FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher)
+    FOREIGN KEY (id_diskon) REFERENCES diskon(id_diskon)
 );
 
 -- Insert data into h_trans table
-INSERT INTO h_trans (tanggal_transaksi, id_karyawan, total_harga, id_voucher, total_diskon, status_transaksi) VALUES
-('2024-12-19', 1, 225000.00, 'VCR001', 25000.00, 'Lunas'),
-('2024-12-19', 2, 175000.00, 'VCR002', 25000.00, 'Lunas'),
-('2024-12-19', 3, 85000.00, 'VCR003', 40000.00, 'Lunas');
+INSERT INTO h_trans (tanggal_transaksi, id_karyawan, total_harga, id_diskon, total_diskon) VALUES
+('2024-12-19', 1, 225000.00, 2, 25000.00),
+('2024-12-19', 2, 175000.00, 3, 25000.00),
+('2024-12-19', 3, 85000.00, 4, 40000.00);
 
 CREATE TABLE stock(
     id_bahan INT(12) PRIMARY KEY AUTO_INCREMENT,
