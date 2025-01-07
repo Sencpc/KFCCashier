@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace KFC
 {
     public partial class manager : Form
     {
+        MySqlTransaction transaction = null;
+        int status;
         public manager(string user)
         {
             InitializeComponent();
@@ -21,6 +24,18 @@ namespace KFC
             koneksi.setupConn();
             LoadKategori();
             loadMenu();
+            loadJenis();
+            loadPotongan();
+        }
+
+        public void clearInput()
+        {
+            textBox1.Text = "";
+            textBox4.Text = "";
+            textBox2.Text = "";
+            numericUpDown1.Value = 1;
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
         }
 
         public void LoadKategori()
@@ -40,6 +55,21 @@ namespace KFC
             comboBox1.DisplayMember = "nama_kategori";
             comboBox1.ValueMember = "id_kategori";
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        public void loadJenis() 
+        {
+            comboBox2.Items.Add("Cripsy");
+            comboBox2.Items.Add("Original");
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        public void loadPotongan()
+        {
+            comboBox3.Items.Add("Dada");
+            comboBox3.Items.Add("Paha");
+            comboBox3.Items.Add("Sayap");
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         public void loadMenu()
@@ -76,7 +106,113 @@ namespace KFC
         //button add
         private void button4_Click(object sender, EventArgs e)
         {
-            string foodName = textBox1.Text;
+            if (CekInput())
+            {
+                string namaMenu = textBox1.Text;
+                string deskripsi = textBox4.Text;
+                int idkategori = int.Parse(comboBox1.SelectedValue.ToString());
+                //string namakategori = comboBox1.SelectedItem.ToString();
+                int harga = int.Parse(GetNumbers(textBox2.Text));
+                string jenis = comboBox2.SelectedItem.ToString();
+                string potongan = comboBox3.SelectedItem.ToString();
+                int jumlahPotongan = int.Parse(numericUpDown1.Value.ToString());
+                int includeToy = 0;
+                int statusMenu = status;
+
+                koneksi.getConn().Open();
+
+                string query = "INSERT INTO menu (nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jumlah_potongan, include_toy, STATUS) VALUES " +
+                    "(@namaMenu, @deskripsi, @idkategori, @harga, @jenis, @potongan, @jumlahPotongan, @includeToy, @statusMenu)";
+
+                MySqlConnection conn = koneksi.getConn();
+
+                try
+                {
+                    transaction = conn.BeginTransaction();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@namaMenu", namaMenu);
+                        cmd.Parameters.AddWithValue("@deskripsi", deskripsi);
+                        cmd.Parameters.AddWithValue("@idkategori", idkategori);
+                        cmd.Parameters.AddWithValue("@harga", harga);
+                        cmd.Parameters.AddWithValue("@jenis", jenis);
+                        cmd.Parameters.AddWithValue("@potongan", potongan);
+                        cmd.Parameters.AddWithValue("@jumlahPotongan", jumlahPotongan);
+                        cmd.Parameters.AddWithValue("@includeToy", includeToy);
+                        cmd.Parameters.AddWithValue("@statusMenu", statusMenu);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows && reader.Read())
+                            {
+                                MessageBox.Show("Berhasil menambahkan menu baru");
+                            }
+                        }
+                    }
+
+                    transaction.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    transaction?.Rollback();
+
+                    MessageBox.Show($"Terjadi kesalahan: {ex.Message}");
+                }
+                finally
+                {
+                    koneksi.getConn().Close();
+                    loadMenu();
+                }
+            }
+            clearInput();
+        }
+        private bool CekInput()
+        {
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Menu kategori tidak diketahui");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Menu harus punya nama");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Menu harga harus ada");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Deskripsi tidak boleh kosong");
+                return false;
+            }
+
+            if (comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Jenis ayam tidak boleh kosong");
+                return false;
+            }
+
+            if (comboBox3.SelectedItem == null)
+            {
+                MessageBox.Show("Harus ada potongan ayam");
+                return false;
+            }
+
+            if (checkBox1.Checked == false && checkBox2.Checked == false)
+            {
+                MessageBox.Show("Menu harus aktif atau nonaktif");
+                return false;
+            }
+
+            return true;
         }
 
         //button update
@@ -120,12 +256,12 @@ namespace KFC
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            
+            status = 1;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            
+            status = 0;
         }
 
         private void checkBox1_Click(object sender, EventArgs e)
@@ -136,6 +272,16 @@ namespace KFC
         private void checkBox2_Click(object sender, EventArgs e)
         {
             checkBox1.Checked = false;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private static string GetNumbers(string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c)).ToArray());
         }
     }
 }
