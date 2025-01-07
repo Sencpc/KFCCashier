@@ -146,3 +146,6 @@ C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\obj\Debug\KFC.monitoring.resources
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.monitoring.resources
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\bin\Debug\CrystalDecisions.Windows.Forms.dll
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Cetakan.resources
+C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\bin\Debug\CrystalDecisions.Windows.Forms.dll
+C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Cetakan.resources
+C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.monitoring.resources

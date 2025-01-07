@@ -15,6 +15,7 @@ namespace KFC
 {
     public partial class monitoring : Form
     {
+        MySqlTransaction transaction = null;
         public monitoring()
         {
             InitializeComponent();
@@ -104,13 +105,101 @@ namespace KFC
         //Button ADD
         private void button2_Click(object sender, EventArgs e)
         {
-            int idCabang = int.Parse(comboBox1.SelectedValue.ToString());
-            string fullName = textBox1.Text;
-            string username = textBox2.Text;
-            string password = textBox3.Text;
-            string jabatan = comboBox2.SelectedItem.ToString();
-            string status = comboBox3.SelectedItem.ToString();
+            if (CekInput())
+            {
 
+                int idCabang = int.Parse(comboBox1.SelectedValue.ToString());
+                string fullName = textBox1.Text;
+                string username = textBox2.Text;
+                string password = textBox3.Text;
+                string jabatan = comboBox2.SelectedItem.ToString();
+                string status = comboBox3.SelectedItem.ToString();
+
+                koneksi.getConn().Open();
+
+                string query = "INSERT INTO karyawan (id_cabang , fullName , username_karyawan , password_karyawan , jabatan , status) VALUES " +
+                    "(@idCabang , @fullName , @username , @password , @jabatan , @status)";
+
+                MySqlConnection conn = koneksi.getConn();
+
+                try
+                {
+                    transaction = conn.BeginTransaction();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@idCabang", idCabang);
+                        cmd.Parameters.AddWithValue("@fullName", fullName);
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@jabatan", jabatan);
+                        cmd.Parameters.AddWithValue("@status", status);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows && reader.Read())
+                            {
+                                MessageBox.Show("Berhasil menambahkan ANJING BARU");
+                            }
+                        }
+                    }
+
+                    transaction.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    transaction?.Rollback();
+
+                    MessageBox.Show($"Terjadi kesalahan: {ex.Message}");
+                }
+                finally
+                {
+                    koneksi.getConn().Close();
+                    loadKaryawan();
+                }
+            }
+        }
+
+        private bool CekInput()
+        {
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Tolong Pilih Jalan ya BABI!");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("KAMU GA PUNYA NAMA?");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("MAU PAKE NAMA NIGGA@1424?");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("KU KASI PASSWORD REKOMENDASI DARI GOOGLE MAU?");
+                return false;
+            }
+
+            if (comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Jd JANITOR aja ya?");
+                return false;
+            }
+
+            if (comboBox3.SelectedItem == null)
+            {
+                MessageBox.Show("Mau ga dapet gaji?");
+                return false;
+            }
+
+            return true;
         }
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
