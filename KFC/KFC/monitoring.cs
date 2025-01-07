@@ -16,6 +16,7 @@ namespace KFC
     public partial class monitoring : Form
     {
         MySqlTransaction transaction = null;
+        int idKaryawan;
         public monitoring()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace KFC
             loadCabang();
             loadJabatan();
             loadStatus();
+            clearInput();
         }
 
         private void monitoring_Load(object sender, EventArgs e)
@@ -157,6 +159,7 @@ namespace KFC
                 {
                     koneksi.getConn().Close();
                     loadKaryawan();
+                    clearInput();   
                 }
             }
         }
@@ -202,12 +205,22 @@ namespace KFC
             return true;
         }
 
+        private void clearInput() {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            comboBox1.SelectedIndex = -1;
+            comboBox2.SelectedIndex = -1;
+            comboBox3.SelectedIndex = -1;
+        }
+
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
+                idKaryawan = Convert.ToInt32(row.Cells["id_pegawai"].Value.ToString());
                 textBox1.Text = row.Cells["fullName"].Value?.ToString();
                 textBox2.Text = row.Cells["username_karyawan"].Value?.ToString();
                 textBox3.Text = row.Cells["password_karyawan"].Value?.ToString(); // Hindari menampilkan password asli
@@ -239,7 +252,62 @@ namespace KFC
         //button UPDATE
         private void button3_Click(object sender, EventArgs e)
         {
+            int idCabang = int.Parse(comboBox1.SelectedValue.ToString());
+            string fullName = textBox1.Text;
+            string username = textBox2.Text;
+            string password = textBox3.Text;
+            string jabatan = comboBox2.SelectedItem.ToString();
+            string status = comboBox3.SelectedItem.ToString();
 
+            if (CekInput())
+            {
+                koneksi.getConn().Open();
+
+                string query = "UPDATE karyawan " +
+                    "SET id_cabang = @idCabang , fullName = @fullName , username_karyawan = @username , password_karyawan = @password , jabatan = @jabatan , status = @status " +
+                    "WHERE id_pegawai = @idKaryawan ";
+
+                MySqlConnection conn = koneksi.getConn();
+
+                try
+                {
+                    transaction = conn.BeginTransaction();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@idKaryawan", idKaryawan);
+                        cmd.Parameters.AddWithValue("@idCabang", idCabang);
+                        cmd.Parameters.AddWithValue("@fullName", fullName);
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@jabatan", jabatan);
+                        cmd.Parameters.AddWithValue("@status", status);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows && reader.Read())
+                            {
+                                MessageBox.Show("Berhasil mengubah Data!");
+                            }
+                        }
+                    }
+
+                    transaction.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    transaction?.Rollback();
+
+                    MessageBox.Show($"Terjadi kesalahan: {ex.Message}");
+                }
+                finally
+                {
+                    koneksi.getConn().Close();
+                    loadKaryawan();
+                    clearInput();
+                }
+            }
         }
 
         //button DELETE
