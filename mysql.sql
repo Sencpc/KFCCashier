@@ -494,4 +494,157 @@ INSERT INTO d_trans (id_htrans, id_menu, qty, subtotal) VALUES
 (2, 17, 4,180000.00),
 (3, 5, 1,125000.00);
 
+-- Create the menu_ingredients table
+CREATE TABLE menu_ingredients (
+    id_menu INT,
+    id_stock INT,
+    qty INT,
+    FOREIGN KEY (id_menu) REFERENCES menu(id_menu),
+    FOREIGN KEY (id_stock) REFERENCES stock(id_bahan)
+);
+
+-- Insert menu ingredients mapping
+INSERT INTO menu_ingredients (id_menu, id_stock, qty) VALUES
+-- Alacarte Chicken
+(1, 3, 1),    -- Chicken Krispy Dada
+(2, 4, 1),    -- Chicken Krispy Paha
+(3, 1, 1),    -- Chicken ORI Dada
+(4, 2, 1),    -- Chicken ORI Paha
+
+-- Bucket 6
+(5, 1, 3),    -- 3 Dada Original
+(5, 2, 3),    -- 3 Paha Original
+
+-- Bucket 9
+(6, 1, 5),    -- 5 Dada Original
+(6, 2, 4),    -- 4 Paha Original
+
+-- Bucket 12
+(7, 1, 6),    -- 6 Dada Original
+(7, 2, 6),    -- 6 Paha Original
+
+-- Super Besar 1
+(8, 1, 1),    -- 1 Dada Original
+(8, 5, 1),    -- 1 Nasi
+(8, 6, 1),    -- 1 Coca-Cola (default drink)
+
+-- Super Besar 2
+(9, 1, 2),    -- 2 Dada Original
+(9, 5, 1),    -- 1 Nasi
+(9, 6, 1),    -- 1 Coca-Cola (default drink)
+
+-- Super Family
+(10, 1, 3),   -- 3 Dada Original
+(10, 2, 2),   -- 2 Paha Original
+(10, 5, 3),   -- 3 Nasi
+(10, 6, 3),   -- 3 Coca-Cola (default drink)
+
+-- Special Porridge
+(11, 9, 1),   -- 1 Porridge
+(11, 10, 1),  -- 1 Coffee
+
+-- Coffee
+(12, 10, 1),  -- Hot Coffee
+(13, 10, 1),  -- Cold Coffee
+
+-- Chaki Kids Meal 1
+(14, 1, 1),   -- 1 Dada Original
+(14, 5, 1),   -- 1 Nasi
+(14, 6, 1),   -- 1 Coca-Cola (default drink)
+
+-- Chocolate Sundae
+(15, 11, 1),  -- 1 Sundae
+
+-- Jagoan Hemat 1
+(16, 1, 1),   -- 1 Dada Original
+(16, 5, 1),   -- 1 Nasi
+(16, 6, 1),   -- 1 Coca-Cola (default drink)
+
+-- Jagoan Hemat 2
+(17, 1, 2),   -- 2 Dada Original
+(17, 5, 1),   -- 1 Nasi
+(17, 6, 1),   -- 1 Coca-Cola (default drink)
+
+-- Jagoan Hemat 3
+(18, 1, 1),   -- 1 Dada Original
+(18, 5, 1),   -- 1 Nasi
+
+-- Individual Drinks
+(19, 6, 1),   -- Coca-Cola
+(20, 8, 1),   -- Sprite
+(21, 7, 1),   -- Fanta
+
+-- Individual Sides
+(23, 5, 1);   -- Nasi
+
+DELIMITER //
+
+CREATE PROCEDURE reduce_stock(
+    IN p_menu_id INT,
+    IN p_quantity INT
+)
+BEGIN
+    DECLARE v_done INT DEFAULT FALSE;
+    DECLARE v_stock_id INT;
+    DECLARE v_required_qty INT;
+    
+    DECLARE cur CURSOR FOR 
+        SELECT id_stock, qty 
+        FROM menu_ingredients 
+        WHERE id_menu = p_menu_id;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = TRUE;
+    
+    START TRANSACTION;
+    
+    OPEN cur;
+    
+    ingredients_loop: LOOP
+        FETCH cur INTO v_stock_id, v_required_qty;
+        
+        IF v_done THEN
+            LEAVE ingredients_loop;
+        END IF;
+        
+        UPDATE stock 
+        SET qty = qty - (v_required_qty * p_quantity)
+        WHERE id = v_stock_id;
+        
+        IF (SELECT qty FROM stock WHERE id = v_stock_id) < 0 THEN
+            ROLLBACK;
+            SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Insufficient stock';
+        END IF;
+    END LOOP;
+    
+    CLOSE cur;
+    COMMIT;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE
+    FUNCTION `proyekpv`.`check_stock_availability`(
+    p_menu_id INT,
+    p_quantity INT
+    )
+    RETURNS BOOLEAN
+    DETERMINISTIC
+    BEGIN
+        DECLARE v_available BOOLEAN DEFAULT TRUE;
+        
+        SELECT CASE WHEN COUNT(*) > 0 THEN FALSE ELSE TRUE END
+        INTO v_available
+        FROM menu_ingredients mi
+        JOIN stock s ON mi.id_stock = s.id
+        WHERE mi.id_menu = p_menu_id
+        AND s.qty < (mi.qty * p_quantity);
+        
+        RETURN v_available;
+    END //
+
+DELIMITER ;
+
 SET FOREIGN_KEY_CHECKS=1;
