@@ -59,8 +59,8 @@ namespace KFC
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -177,8 +177,8 @@ namespace KFC
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.textBox3);
             this.panel3.Controls.Add(this.comboBox3);
-            this.panel3.Controls.Add(this.comboBox2);
             this.panel3.Controls.Add(this.numericUpDown1);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label7);
@@ -393,14 +393,6 @@ namespace KFC
             0,
             0});
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(168, 471);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(167, 24);
-            this.comboBox2.TabIndex = 24;
-            // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
@@ -408,6 +400,13 @@ namespace KFC
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(167, 24);
             this.comboBox3.TabIndex = 25;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(168, 468);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(167, 22);
+            this.textBox3.TabIndex = 26;
             // 
             // manager
             // 
@@ -471,6 +470,6 @@ namespace KFC
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

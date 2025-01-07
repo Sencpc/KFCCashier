@@ -21,11 +21,10 @@ namespace KFC
         {
             InitializeComponent();
             disableButton();
-            label1.Text ="Welcome, "+user;
+            label1.Text = "Welcome, " + user;
             koneksi.setupConn();
             LoadKategori();
             loadMenu();
-            loadJenis();
             loadPotongan();
         }
 
@@ -57,16 +56,6 @@ namespace KFC
             comboBox1.DisplayMember = "nama_kategori";
             comboBox1.ValueMember = "id_kategori";
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
-
-        public void loadJenis() 
-        {
-            comboBox2.Items.Add("Cripsy");
-            comboBox2.Items.Add("Original");
-            comboBox2.Items.Add("Hot");
-            comboBox2.Items.Add("Cold");
-            comboBox2.Items.Add("Sandwich");
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         public void loadPotongan()
@@ -118,7 +107,7 @@ namespace KFC
                 int idkategori = int.Parse(comboBox1.SelectedValue.ToString());
                 //string namakategori = comboBox1.SelectedItem.ToString();
                 int harga = int.Parse(GetNumbers(textBox2.Text));
-                string jenis = comboBox2.SelectedItem.ToString();
+                string jenis = textBox3.Text;
                 string potongan = comboBox3.SelectedItem.ToString();
                 int jumlahPotongan = int.Parse(numericUpDown1.Value.ToString());
                 int includeToy = 0;
@@ -199,9 +188,9 @@ namespace KFC
                 return false;
             }
 
-            if (comboBox2.SelectedItem == null)
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
             {
-                MessageBox.Show("Jenis ayam tidak boleh kosong");
+                MessageBox.Show("Jenis menu tidak boleh kosong");
                 return false;
             }
 
@@ -268,7 +257,7 @@ namespace KFC
                     cmd.Parameters.AddWithValue("@deskripsi", textBox4.Text);
                     cmd.Parameters.AddWithValue("@idkategori", int.Parse(comboBox1.SelectedValue.ToString()));
                     cmd.Parameters.AddWithValue("@harga", int.Parse(GetNumbers(textBox2.Text)));
-                    cmd.Parameters.AddWithValue("@jenis", comboBox2.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@jenis", textBox3.Text);
                     cmd.Parameters.AddWithValue("@potongan", comboBox3.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@jumlahPotongan", (int)numericUpDown1.Value);
                     cmd.Parameters.AddWithValue("@statusMenu", status);
@@ -313,7 +302,7 @@ namespace KFC
         //button delete
         private void button6_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void disableButton()
@@ -390,23 +379,11 @@ namespace KFC
                     textBox1.Text = row.Cells["nama_menu"].Value == DBNull.Value ? "" : row.Cells["nama_menu"].Value.ToString();
                     textBox4.Text = row.Cells["deskripsi"].Value == DBNull.Value ? "" : row.Cells["deskripsi"].Value.ToString();
                     textBox2.Text = row.Cells["harga"].Value == DBNull.Value ? "0" : row.Cells["harga"].Value.ToString();
+                    textBox3.Text = row.Cells["jenis"].Value == DBNull.Value ? "" : row.Cells["jenis"].Value.ToString();
 
                     if (row.Cells["id_kategori"].Value != DBNull.Value)
                     {
                         comboBox1.SelectedValue = row.Cells["id_kategori"].Value;
-                    }
-
-                    if (row.Cells["jenis"].Value != DBNull.Value)
-                    {
-                        string jenis = row.Cells["jenis"].Value.ToString();
-                        for (int i = 0; i < comboBox2.Items.Count; i++)
-                        {
-                            if (comboBox2.Items[i].ToString().Equals(jenis, StringComparison.OrdinalIgnoreCase))
-                            {
-                                comboBox2.SelectedIndex = i;
-                                break;
-                            }
-                        }
                     }
 
                     if (row.Cells["potongan"].Value != DBNull.Value)
