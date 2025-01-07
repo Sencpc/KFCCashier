@@ -358,8 +358,8 @@ CREATE TABLE menu (
 
 INSERT INTO menu (nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jumlah_potongan, include_toy, STATUS) VALUES
 -- Alacarte Chicken
-('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Crispy', 'Dada', 1, 0, 1),
-('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Crispy', 'Paha', 1, 0, 1),
+('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 28000.00, 'Crispy', 'Dada', 1, 0, 1),
+('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 23000.00, 'Crispy', 'Paha', 1, 0, 1),
 ('Chicken ORI', 'Rasa original authentic', 1, 25000.00, 'Original', 'Dada', 1, 0, 1),
 ('Chicken ORI', 'Rasa original authentic', 1, 20000.00, 'Original', 'Paha', 1, 0, 1),
 
@@ -398,7 +398,7 @@ INSERT INTO menu (nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jum
 ('Air Mineral', 'Air mineral', 9, 8000.00, NULL, NULL, NULL, 0, 1),
 
 -- Sides
-('Nasi', 'Nasi putih', 10, 8000.00, NULL, NULL, NULL, 0, 1),
+('Nasi', 'Nasi putih', 10, 5000.00, NULL, NULL, NULL, 0, 1),
 ('French Fries', 'Kentang goreng', 10, 15000.00, NULL, NULL, NULL, 0, 1),
 ('Perkedel', 'Perkedel kentang', 10, 6000.00, NULL, NULL, NULL, 0, 1),
 ('Soup', 'Sup ayam', 10, 7000.00, NULL, NULL, NULL, 0, 1);
@@ -459,7 +459,7 @@ CREATE TABLE h_trans (
     total_harga DECIMAL(12,2) NOT NULL,
     id_voucher VARCHAR(12),
     total_diskon DECIMAL(12,2) NOT NULL,
-    status_transaksi ENUM('Lunas', 'Belum Lunas', 'Dibatalkan') NOT NULL,
+    status_transaksi ENUM('Lunas', 'Belum Lunas', 'Dibatalkan')DEFAULT 'Belum Lunas' NOT NULL,
     FOREIGN KEY (id_karyawan) REFERENCES karyawan(id_pegawai),
     FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher)
 );
@@ -503,8 +503,12 @@ CREATE TABLE d_trans (
 
 -- Insert data into d_trans table
 INSERT INTO d_trans (id_htrans, id_menu, qty, subtotal) VALUES
-(1, 3, 10,25000.00),
-(2, 4, 10,20000.00),
+(1, 3, 1,25000.00),
+(1, 6, 1,175000.00),
+(1, 23, 7,35000.00),
+(1, 24, 1,15000.00),
+(2, 4, 1,20000.00),
+(2, 17, 4,180000.00),
 (3, 5, 1,125000.00);
 
 SET FOREIGN_KEY_CHECKS=1;
