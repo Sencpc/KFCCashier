@@ -16,6 +16,7 @@ namespace KFC
     {
         MySqlTransaction transaction = null;
         int status;
+        private int selectedMenuId = -1;
         public manager(string user)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace KFC
             numericUpDown1.Value = 1;
             checkBox1.Checked = false;
             checkBox2.Checked = false;
+            selectedMenuId = -1;
         }
 
         public void LoadKategori()
@@ -61,6 +63,9 @@ namespace KFC
         {
             comboBox2.Items.Add("Cripsy");
             comboBox2.Items.Add("Original");
+            comboBox2.Items.Add("Hot");
+            comboBox2.Items.Add("Cold");
+            comboBox2.Items.Add("Sandwich");
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -76,7 +81,7 @@ namespace KFC
         {
             koneksi.getConn().Open();
 
-            string query = "SELECT m.nama_menu, m.deskripsi, k.id_kategori, k.nama_kategori," +
+            string query = "SELECT m.id_menu, m.nama_menu, m.deskripsi, k.id_kategori, k.nama_kategori," +
                            " m.harga, m.jenis, m.potongan, m.jumlah_potongan, m.status " +
                            "FROM menu m " +
                            "JOIN kategori k ON m.id_kategori = k.id_kategori " +
@@ -218,13 +223,97 @@ namespace KFC
         //button update
         private void button5_Click(object sender, EventArgs e)
         {
+            if (!CekInput() || selectedMenuId == -1)
+            {
+                if (selectedMenuId == -1)
+                {
+                    MessageBox.Show("Pilih menu yang akan diupdate terlebih dahulu");
+                }
+                return;
+            }
 
+            DialogResult result = MessageBox.Show("Apakah anda yakin ingin mengupdate menu ini?",
+                "Konfirmasi Update", MessageBoxButtons.YesNo);
+
+            if (result != DialogResult.Yes) return;
+
+            MySqlConnection conn = koneksi.getConn();
+            MySqlTransaction localTransaction = null;
+
+            try
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+
+                conn.Open();
+                localTransaction = conn.BeginTransaction();
+
+                string query = @"UPDATE menu 
+                       SET nama_menu = @namaMenu,
+                           deskripsi = @deskripsi, 
+                           id_kategori = @idkategori, 
+                           harga = @harga, 
+                           jenis = @jenis, 
+                           potongan = @potongan, 
+                           jumlah_potongan = @jumlahPotongan, 
+                           status = @statusMenu 
+                       WHERE id_menu = @idMenu";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn, localTransaction))
+                {
+                    cmd.Parameters.AddWithValue("@idMenu", selectedMenuId);
+                    cmd.Parameters.AddWithValue("@namaMenu", textBox1.Text);
+                    cmd.Parameters.AddWithValue("@deskripsi", textBox4.Text);
+                    cmd.Parameters.AddWithValue("@idkategori", int.Parse(comboBox1.SelectedValue.ToString()));
+                    cmd.Parameters.AddWithValue("@harga", int.Parse(GetNumbers(textBox2.Text)));
+                    cmd.Parameters.AddWithValue("@jenis", comboBox2.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@potongan", comboBox3.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@jumlahPotongan", (int)numericUpDown1.Value);
+                    cmd.Parameters.AddWithValue("@statusMenu", status);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        localTransaction.Commit();
+                        MessageBox.Show("Menu berhasil diupdate");
+                        clearInput();
+                        disableButton();
+                    }
+                    else
+                    {
+                        localTransaction.Rollback();
+                        MessageBox.Show("Menu tidak ditemukan");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    localTransaction?.Rollback();
+                }
+                catch { }
+                MessageBox.Show($"Terjadi kesalahan saat update: {ex.Message}");
+            }
+            finally
+            {
+                try
+                {
+                    conn.Close();
+                }
+                catch { }
+
+                loadMenu();
+            }
         }
 
         //button delete
         private void button6_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void disableButton()
@@ -282,6 +371,79 @@ namespace KFC
         private static string GetNumbers(string input)
         {
             return new string(input.Where(c => char.IsDigit(c)).ToArray());
+        }
+
+        private void dataGridView2_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    button5.Enabled = true;
+                    button6.Enabled = true;
+                    button4.Enabled = false;
+
+                    DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
+
+                    selectedMenuId = Convert.ToInt32(row.Cells["id_menu"].Value);
+
+                    textBox1.Text = row.Cells["nama_menu"].Value == DBNull.Value ? "" : row.Cells["nama_menu"].Value.ToString();
+                    textBox4.Text = row.Cells["deskripsi"].Value == DBNull.Value ? "" : row.Cells["deskripsi"].Value.ToString();
+                    textBox2.Text = row.Cells["harga"].Value == DBNull.Value ? "0" : row.Cells["harga"].Value.ToString();
+
+                    if (row.Cells["id_kategori"].Value != DBNull.Value)
+                    {
+                        comboBox1.SelectedValue = row.Cells["id_kategori"].Value;
+                    }
+
+                    if (row.Cells["jenis"].Value != DBNull.Value)
+                    {
+                        string jenis = row.Cells["jenis"].Value.ToString();
+                        for (int i = 0; i < comboBox2.Items.Count; i++)
+                        {
+                            if (comboBox2.Items[i].ToString().Equals(jenis, StringComparison.OrdinalIgnoreCase))
+                            {
+                                comboBox2.SelectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (row.Cells["potongan"].Value != DBNull.Value)
+                    {
+                        string potongan = row.Cells["potongan"].Value.ToString();
+                        for (int i = 0; i < comboBox3.Items.Count; i++)
+                        {
+                            if (comboBox3.Items[i].ToString().Equals(potongan, StringComparison.OrdinalIgnoreCase))
+                            {
+                                comboBox3.SelectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    numericUpDown1.Value = row.Cells["jumlah_potongan"].Value == DBNull.Value ?
+                        1 : Convert.ToDecimal(row.Cells["jumlah_potongan"].Value);
+
+                    int status = row.Cells["status"].Value == DBNull.Value ?
+                        0 : Convert.ToInt32(row.Cells["status"].Value);
+
+                    if (status == 1)
+                    {
+                        checkBox1.Checked = true;
+                        checkBox2.Checked = false;
+                    }
+                    else
+                    {
+                        checkBox1.Checked = false;
+                        checkBox2.Checked = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Terjadi kesalahan saat memuat data: {ex.Message}");
+                }
+            }
         }
     }
 }
