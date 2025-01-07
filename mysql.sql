@@ -360,7 +360,7 @@ INSERT INTO menu (nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jum
 -- Alacarte Chicken
 ('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Crispy', 'Dada', 1, 0, 1),
 ('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 20000.00, 'Crispy', 'Paha', 1, 0, 1),
-('Chicken ORI', 'Rasa original authentic', 1, 20000.00, 'Original', 'Dada', 1, 0, 1),
+('Chicken ORI', 'Rasa original authentic', 1, 25000.00, 'Original', 'Dada', 1, 0, 1),
 ('Chicken ORI', 'Rasa original authentic', 1, 20000.00, 'Original', 'Paha', 1, 0, 1),
 
 -- Bucket
@@ -466,9 +466,9 @@ CREATE TABLE h_trans (
 
 -- Insert data into h_trans table
 INSERT INTO h_trans (tanggal_transaksi, id_karyawan, total_harga, id_voucher, total_diskon, status_transaksi) VALUES
-('2024-12-19', 1, 225000.00, 'VCR001', 22500.00, 'Lunas'),
+('2024-12-19', 1, 225000.00, 'VCR001', 25000.00, 'Lunas'),
 ('2024-12-19', 2, 175000.00, 'VCR002', 25000.00, 'Lunas'),
-('2024-12-19', 3, 85000.00, 'VCR003', 12750.00, 'Lunas');
+('2024-12-19', 3, 85000.00, 'VCR003', 40000.00, 'Lunas');
 
 CREATE TABLE stock(
     id_bahan INT(12) PRIMARY KEY AUTO_INCREMENT,
@@ -503,8 +503,8 @@ CREATE TABLE d_trans (
 
 -- Insert data into d_trans table
 INSERT INTO d_trans (id_htrans, id_menu, qty, subtotal) VALUES
-(1, 3, 1,225000.00),
-(2, 4, 1,175000.00),
-(3, 5, 1,85000.00);
+(1, 3, 10,25000.00),
+(2, 4, 10,20000.00),
+(3, 5, 1,125000.00);
 
 SET FOREIGN_KEY_CHECKS=1;
