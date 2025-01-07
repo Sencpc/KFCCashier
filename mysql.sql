@@ -608,9 +608,9 @@ BEGIN
         
         UPDATE stock 
         SET qty = qty - (v_required_qty * p_quantity)
-        WHERE id = v_stock_id;
+        WHERE id_bahan = v_stock_id;
         
-        IF (SELECT qty FROM stock WHERE id = v_stock_id) < 0 THEN
+        IF (SELECT qty FROM stock WHERE id_bahan = v_stock_id) < 0 THEN
             ROLLBACK;
             SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Insufficient stock';
@@ -626,7 +626,7 @@ DELIMITER ;
 DELIMITER //
 
 CREATE
-    FUNCTION `proyekpv`.`check_stock_availability`(
+    FUNCTION check_stock_availability(
     p_menu_id INT,
     p_quantity INT
     )
@@ -638,7 +638,7 @@ CREATE
         SELECT CASE WHEN COUNT(*) > 0 THEN FALSE ELSE TRUE END
         INTO v_available
         FROM menu_ingredients mi
-        JOIN stock s ON mi.id_stock = s.id
+        JOIN stock s ON mi.id_stock = s.id_bahan
         WHERE mi.id_menu = p_menu_id
         AND s.qty < (mi.qty * p_quantity);
         
