@@ -141,7 +141,7 @@ namespace KFC
                         {
                             if (reader.HasRows && reader.Read())
                             {
-                                MessageBox.Show("Berhasil menambahkan ANJING BARU");
+                                MessageBox.Show("Berhasil menambahkan Karyawan Baru!YEY");
                             }
                         }
                     }
@@ -310,10 +310,10 @@ namespace KFC
             }
         }
 
-        //button DELETE
+        //button Clear
         private void button4_Click(object sender, EventArgs e)
         {
-
+            clearInput();
         }
     }
 }
