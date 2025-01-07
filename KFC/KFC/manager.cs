@@ -20,6 +20,7 @@ namespace KFC
             label1.Text ="Welcome, "+user;
             koneksi.setupConn();
             LoadKategori();
+            loadMenu();
         }
 
         public void LoadKategori()
@@ -39,6 +40,26 @@ namespace KFC
             comboBox1.DisplayMember = "nama_kategori";
             comboBox1.ValueMember = "id_kategori";
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        public void loadMenu()
+        {
+            koneksi.getConn().Open();
+
+            string query = "SELECT m.nama_menu, m.deskripsi, k.id_kategori, k.nama_kategori," +
+                           " m.harga, m.jenis, m.potongan, m.jumlah_potongan, m.status " +
+                           "FROM menu m " +
+                           "JOIN kategori k ON m.id_kategori = k.id_kategori " +
+                           "ORDER BY m.id_menu ASC";
+            MySqlCommand command = new MySqlCommand(query, koneksi.getConn());
+            MySqlDataReader reader = command.ExecuteReader();
+
+            DataTable menuTable = new DataTable();
+            menuTable.Load(reader);
+            reader.Close();
+            koneksi.getConn().Close();
+
+            dataGridView2.DataSource = menuTable;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
