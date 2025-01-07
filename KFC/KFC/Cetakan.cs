@@ -18,7 +18,7 @@ namespace KFC
             try
             {
                 CrystalReport1 report = new CrystalReport1();
-                report.SetParameterValue("htrans_id", id);
+                report.SetParameterValue("h_transID", id);
 
                 crystalReportViewer1.ReportSource = report;
             }

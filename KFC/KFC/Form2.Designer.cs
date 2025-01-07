@@ -40,6 +40,7 @@ namespace KFC
             this.button4 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
@@ -132,7 +133,7 @@ namespace KFC
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(667, 699);
+            this.button4.Location = new System.Drawing.Point(767, 699);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(130, 46);
@@ -143,7 +144,7 @@ namespace KFC
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(470, 710);
+            this.numericUpDown1.Location = new System.Drawing.Point(570, 710);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -156,11 +157,20 @@ namespace KFC
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(371, 712);
+            this.label1.Location = new System.Drawing.Point(471, 712);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "Quantity : ";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(181, 707);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(240, 28);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form2
             // 
@@ -168,6 +178,7 @@ namespace KFC
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1125, 782);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button4);
@@ -200,5 +211,6 @@ namespace KFC
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

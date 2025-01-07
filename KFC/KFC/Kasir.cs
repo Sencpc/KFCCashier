@@ -1,4 +1,5 @@
 ﻿using KFC.Properties;
+using MySql.Data.MySqlClient;
 using Mysqlx.Resultset;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace KFC
         DataTable menuUtama = new DataTable();
         DataTable menuAll = new DataTable();
         DataTable dtCart = new DataTable();
+        
         public Kasir(string user)
         {
             InitializeComponent();
@@ -51,6 +53,19 @@ namespace KFC
             printMenu();
         }
 
+        private string GetKaryawanId()
+        {
+            string query = "SELECT id_pegawai FROM karyawan WHERE fullName = @fullName";
+            using (var cmd = new MySqlCommand(query, koneksi.getConn()))
+            {
+                cmd.Parameters.AddWithValue("@fullName", label1.Text);
+                koneksi.getConn().Open();
+                var result = cmd.ExecuteScalar();
+                koneksi.getConn().Close();
+                return result.ToString();
+            }
+        }
+
         private void label3_Click(object sender, EventArgs e)
         {
             if (dtCart.Rows.Count == 0)
@@ -60,7 +75,7 @@ namespace KFC
             }
             else
             {
-                Form2 form2 = new Form2(dtCart);
+                Form2 form2 = new Form2(dtCart,GetKaryawanId());
                 form2.ShowDialog();
             }
         }
