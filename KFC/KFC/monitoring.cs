@@ -88,6 +88,7 @@ namespace KFC
             comboBox2.Items.Add("Admin");
             comboBox2.Items.Add("Kasir");
             comboBox2.Items.Add("Manager");
+            comboBox2.Items.Add("Chef");
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
