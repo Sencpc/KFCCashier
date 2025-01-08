@@ -36,6 +36,12 @@ namespace KFC
             dtCart.Columns.Add("Jumlah", typeof(int));
             dtCart.Columns.Add("Harga", typeof(string));
             dtCart.Columns.Add("Subtotal", typeof(string));
+
+            dataGridView1.DataSource = dtCart;
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -193,6 +199,7 @@ namespace KFC
             {
                 MessageBox.Show("Invalid format for Name property.");
             }
+            dataGridView1.DataSource = dtCart;
         }
 
         //fiter button ALL

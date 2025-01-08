@@ -42,8 +42,11 @@ namespace KFC
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,7 +62,7 @@ namespace KFC
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(270, 841);
+            this.panel1.Size = new System.Drawing.Size(270, 844);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -121,7 +124,7 @@ namespace KFC
             this.panel2.Location = new System.Drawing.Point(272, 89);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1300, 752);
+            this.panel2.Size = new System.Drawing.Size(1072, 752);
             this.panel2.TabIndex = 6;
             // 
             // button7
@@ -189,12 +192,37 @@ namespace KFC
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(1350, 101);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(524, 725);
+            this.dataGridView1.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(1353, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 46);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Cart";
+            // 
             // Kasir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1420, 841);
+            this.ClientSize = new System.Drawing.Size(1925, 844);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button6);
@@ -209,7 +237,9 @@ namespace KFC
             this.Load += new System.EventHandler(this.Kasir_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -227,5 +257,7 @@ namespace KFC
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label4;
     }
 }
