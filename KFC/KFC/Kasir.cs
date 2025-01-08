@@ -181,11 +181,11 @@ namespace KFC
                 {
                     DataRow dr = dtCart.NewRow();
                     dr[0] = id.ToString();
-                    dr[1] = menuAll.Rows[id][1].ToString();
-                    dr[2] = menuAll.Rows[id][2].ToString();
+                    dr[1] = menuAll.Rows[id-1][1].ToString();
+                    dr[2] = menuAll.Rows[id-1][2].ToString();
                     dr[3] = 1;
-                    dr[4] = menuAll.Rows[id][3].ToString();
-                    dr[5] = menuAll.Rows[id][3].ToString();
+                    dr[4] = menuAll.Rows[id-1][3].ToString();
+                    dr[5] = menuAll.Rows[id-1][3].ToString();
                     dtCart.Rows.Add(dr);
                 }
             }

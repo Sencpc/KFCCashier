@@ -18,7 +18,7 @@ namespace KFC
         DataTable dtDiskon= new DataTable();
         int selected = -1;
         string idkaryawan;
-        string iddiskon = "1";
+        string iddiskon;
 
         public Form2(DataTable dtCart, string idkaryawan)
         {
@@ -36,6 +36,7 @@ namespace KFC
             button4.Enabled = false;
             LoadDiskonComboBox();
             comboBox1.SelectedIndex = 0;
+            iddiskon = comboBox1.SelectedValue.ToString();
         }
 
         private void LoadDiskonComboBox()
@@ -82,6 +83,8 @@ namespace KFC
                     numericUpDown1.Enabled = false;
                     button4.Enabled = false;
                     selected = -1;
+                    iddiskon = "1";
+                    comboBox1.SelectedIndex = 0;
                 }
                 catch (Exception ex)
                 {
@@ -142,7 +145,6 @@ namespace KFC
                     return;
                 }
 
-                // Rest of the transaction code...
                 string htrans = @"INSERT INTO h_trans 
             (tanggal_transaksi, id_karyawan, total_harga, id_diskon, total_diskon) 
             VALUES (@tanggal, @id_karyawan, @totalharga, @id_diskon, @totaldiskon);
@@ -234,6 +236,9 @@ namespace KFC
                         else if (diskonType == "Nominal")
                         {
                             totaldiskon = nominal;
+                        }else
+                        {
+                            totaldiskon = 0;
                         }
                     }
                 }
@@ -265,10 +270,7 @@ namespace KFC
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedValue != null)
-            {
-                iddiskon = comboBox1.SelectedValue.ToString();
-            }
+             iddiskon = comboBox1.SelectedValue.ToString();
         }
     }
 }
