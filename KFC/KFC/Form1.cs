@@ -42,6 +42,7 @@ namespace KFC
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Username dan password tidak boleh kosong.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                koneksi.getConn().Close();
                 return;
             }
 
@@ -92,6 +93,7 @@ namespace KFC
             else
             {
                 MessageBox.Show("Username atau password salah.", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                koneksi.getConn().Close();
             }
         }
 

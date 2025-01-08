@@ -16,7 +16,8 @@ namespace KFC
             string query =
                 "SELECT m.id_menu AS id, m.nama_menu AS Menu, m.deskripsi AS DESCRIPTION , m.harga AS Price , k.nama_kategori AS Category " +
                 "FROM menu m " +
-                "JOIN kategori k ON k.id_kategori = m.id_kategori";
+                "JOIN kategori k ON k.id_kategori = m.id_kategori "+
+                "ORDER BY id_menu ASC";
 
             if (!string.IsNullOrEmpty(kategori))
             {
