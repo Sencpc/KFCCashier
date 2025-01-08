@@ -35,6 +35,7 @@ namespace KFC
             numericUpDown1.Enabled = false;
             button4.Enabled = false;
             LoadDiskonComboBox();
+            comboBox1.SelectedIndex = 0;
         }
 
         private void LoadDiskonComboBox()
@@ -264,7 +265,10 @@ namespace KFC
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            iddiskon = comboBox1.SelectedValue.ToString();
+            if (comboBox1.SelectedValue != null)
+            {
+                iddiskon = comboBox1.SelectedValue.ToString();
+            }
         }
     }
 }

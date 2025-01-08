@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +19,9 @@ namespace KFC
             try
             {
                 CrystalReport1 report = new CrystalReport1();
+                report.SetDatabaseLogon("tegar", "1234", "10.10.5.192", "proyekpv");
+                report.VerifyDatabase();
                 report.SetParameterValue("h_transID", id);
-
                 crystalReportViewer1.ReportSource = report;
             }
             catch (Exception ex)
