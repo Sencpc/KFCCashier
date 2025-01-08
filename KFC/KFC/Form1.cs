@@ -70,6 +70,17 @@ namespace KFC
                         this.Show();
                     }
                 }
+                else if ((karyawan.jabatanCheck(username, password).Equals("Koki") || karyawan.jabatanCheck(username, password).Equals("Chef")) && dt.Rows[0][6].ToString().Equals("Aktif"))
+                {
+                    koneksi.getConn().Close();
+                    Dapur d = new Dapur(fullName);
+                    this.Hide();
+                    DialogResult dr = d.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        this.Show();
+                    }
+                }
                 else
                 {
                     MessageBox.Show("Akun anda tidak aktif.", "Login Gagal "+ dt.Rows[0][5].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
