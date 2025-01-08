@@ -425,5 +425,12 @@ namespace KFC
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Diskon ds = new Diskon();
+            this.DialogResult = DialogResult.OK;
+            ds.ShowDialog();
+        }
     }
 }

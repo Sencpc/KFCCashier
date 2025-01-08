@@ -133,6 +133,9 @@
     <EmbeddedResource Include="Dapur.resx">
       <DependentUpon>Dapur.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Diskon.resx">
+      <DependentUpon>Diskon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
