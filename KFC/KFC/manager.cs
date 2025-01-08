@@ -188,18 +188,6 @@ namespace KFC
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                MessageBox.Show("Jenis menu tidak boleh kosong");
-                return false;
-            }
-
-            if (comboBox3.SelectedItem == null)
-            {
-                MessageBox.Show("Harus ada potongan ayam");
-                return false;
-            }
-
             if (checkBox1.Checked == false && checkBox2.Checked == false)
             {
                 MessageBox.Show("Menu harus aktif atau nonaktif");
