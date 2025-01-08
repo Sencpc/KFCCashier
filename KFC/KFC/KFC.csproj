@@ -76,6 +76,12 @@
       <DependentUpon>Dapur.cs</DependentUpon>
     </Compile>
     <Compile Include="Design.cs" />
+    <Compile Include="Diskon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Diskon.Designer.cs">
+      <DependentUpon>Diskon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -24,6 +24,7 @@ namespace KFC
             label1.Text = "Welcome, " + user;
             koneksi.setupConn();
             LoadKategori();
+            loadJenis();
             loadMenu();
             loadPotongan();
         }
@@ -63,7 +64,17 @@ namespace KFC
             comboBox3.Items.Add("Dada");
             comboBox3.Items.Add("Paha");
             comboBox3.Items.Add("Sayap");
+            comboBox3.Items.Add("Mix");
             comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        public void loadJenis()
+        {
+            comboBox2.Items.Add("Crispy");
+            comboBox2.Items.Add("Original");
+            comboBox2.Items.Add("Hot");
+            comboBox2.Items.Add("Cold");
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         public void loadMenu()
@@ -107,7 +118,7 @@ namespace KFC
                 int idkategori = int.Parse(comboBox1.SelectedValue.ToString());
                 //string namakategori = comboBox1.SelectedItem.ToString();
                 int harga = int.Parse(GetNumbers(textBox2.Text));
-                string jenis = textBox3.Text;
+                string jenis = comboBox2.SelectedItem.ToString();
                 string potongan = comboBox3.SelectedItem.ToString();
                 int jumlahPotongan = int.Parse(numericUpDown1.Value.ToString());
                 int includeToy = 0;
@@ -245,7 +256,7 @@ namespace KFC
                     cmd.Parameters.AddWithValue("@deskripsi", textBox4.Text);
                     cmd.Parameters.AddWithValue("@idkategori", int.Parse(comboBox1.SelectedValue.ToString()));
                     cmd.Parameters.AddWithValue("@harga", int.Parse(GetNumbers(textBox2.Text)));
-                    cmd.Parameters.AddWithValue("@jenis", textBox3.Text);
+                    cmd.Parameters.AddWithValue("@jenis", comboBox2.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@potongan", comboBox3.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@jumlahPotongan", (int)numericUpDown1.Value);
                     cmd.Parameters.AddWithValue("@statusMenu", status);
@@ -367,7 +378,6 @@ namespace KFC
                     textBox1.Text = row.Cells["nama_menu"].Value == DBNull.Value ? "" : row.Cells["nama_menu"].Value.ToString();
                     textBox4.Text = row.Cells["deskripsi"].Value == DBNull.Value ? "" : row.Cells["deskripsi"].Value.ToString();
                     textBox2.Text = row.Cells["harga"].Value == DBNull.Value ? "0" : row.Cells["harga"].Value.ToString();
-                    textBox3.Text = row.Cells["jenis"].Value == DBNull.Value ? "" : row.Cells["jenis"].Value.ToString();
 
                     if (row.Cells["id_kategori"].Value != DBNull.Value)
                     {
@@ -409,6 +419,11 @@ namespace KFC
                     MessageBox.Show($"Terjadi kesalahan saat memuat data: {ex.Message}");
                 }
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
