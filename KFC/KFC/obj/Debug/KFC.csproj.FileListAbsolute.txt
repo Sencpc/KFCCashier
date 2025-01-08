@@ -151,3 +151,4 @@ C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Cetakan.resou
 C:\Users\NIKO\Source\Repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.monitoring.resources
 C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\bin\Debug\CrystalDecisions.Windows.Forms.dll
 C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\obj\Debug\KFC.Cetakan.resources
+C:\Users\Asus\Source\Repos\KFCCashier\KFC\KFC\obj\Debug\KFC.Dapur.resources
