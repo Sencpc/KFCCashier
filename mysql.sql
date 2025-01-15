@@ -577,6 +577,56 @@ INSERT INTO menu_ingredients (id_menu, id_stock, qty) VALUES
 -- Individual Sides
 (23, 5, 1);   -- Nasi
 
+CREATE TABLE stock_history (
+    id_history INT(12) PRIMARY KEY AUTO_INCREMENT,
+    id_bahan INT(12),
+    nama VARCHAR(255) NOT NULL,
+    qty_change INT(12) NOT NULL,
+    qty_final INT(12) NOT NULL,
+    satuan_bahan VARCHAR(255) NOT NULL,
+    type_change ENUM('IN', 'OUT') NOT NULL,
+    date_change TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    DESCRIPTION TEXT,
+    FOREIGN KEY (id_bahan) REFERENCES stock(id_bahan)
+);
+
+INSERT INTO stock_history (id_bahan, nama, qty_change, qty_final, satuan_bahan, type_change, date_change, DESCRIPTION) VALUES
+(1, 'Dada Original', 20, 80, 'Pcs', 'OUT', '2025-01-10 14:30:00', 'Stock reduction for daily sales'),
+(6, 'Coca-Cola', 50, 150, 'Pcs', 'IN', '2025-01-11 09:15:00', 'Regular stock replenishment'),
+(5, 'Nasi', 35, 65, 'Pcs', 'OUT', '2025-01-12 18:45:00', 'Evening service consumption'),
+(10, 'Coffee', 30, 130, 'Pcs', 'IN', '2025-01-13 11:20:00', 'Additional stock for peak season'),
+(4, 'Paha Crispy', 25, 75, 'Pcs', 'OUT', '2025-01-14 13:00:00', 'Lunch time consumption');
+
+
+DELIMITER //
+CREATE TRIGGER after_stock_update 
+AFTER UPDATE ON stock
+FOR EACH ROW 
+BEGIN
+    INSERT INTO stock_history (
+        id_bahan,
+        nama,
+        qty_change,
+        qty_final,
+        satuan_bahan,
+        type_change,
+        DESCRIPTION
+    )
+    VALUES (
+        NEW.id_bahan,
+        NEW.nama,
+        ABS(NEW.qty - OLD.qty),
+        NEW.qty,
+        NEW.satuan_bahan,
+        CASE 
+            WHEN NEW.qty > OLD.qty THEN 'IN'
+            ELSE 'OUT'
+        END,
+        CONCAT('Stock changed from ', OLD.qty, ' to ', NEW.qty)
+    );
+END;//
+DELIMITER ;
+
 DELIMITER //
 
 CREATE PROCEDURE reduce_stock(
