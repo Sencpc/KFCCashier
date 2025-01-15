@@ -181,7 +181,7 @@ namespace KFC
                 transaction.Commit();
                 MessageBox.Show("Transaction successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Cetakan cetak = new Cetakan(Convert.ToInt32(lastInsertedId));
+                Cetakan cetak = new Cetakan(1,Convert.ToInt32(lastInsertedId));
                 cetak.ShowDialog();
             }
             catch (Exception ex)

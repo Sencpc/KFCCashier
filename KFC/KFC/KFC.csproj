@@ -63,10 +63,16 @@
     <Compile Include="Cetakan.Designer.cs">
       <DependentUpon>Cetakan.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReport1.cs">
+    <Compile Include="HistoryPembelian.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <DependentUpon>HistoryPembelian.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Nota_Pembelian.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Nota_Pembelian.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Dapur.cs">
@@ -122,6 +128,12 @@
     <Compile Include="monitoring.Designer.cs">
       <DependentUpon>monitoring.cs</DependentUpon>
     </Compile>
+    <Compile Include="OutputStock.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutputStock.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="proyekPv.Designer.cs">
@@ -132,9 +144,13 @@
     <EmbeddedResource Include="Cetakan.resx">
       <DependentUpon>Cetakan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReport1.rpt">
+    <EmbeddedResource Include="HistoryPembelian.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+      <LastGenOutput>HistoryPembelian.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nota_Pembelian.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Nota_Pembelian.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Dapur.resx">
       <DependentUpon>Dapur.cs</DependentUpon>
@@ -159,6 +175,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="monitoring.resx">
       <DependentUpon>monitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutputStock.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OutputStock.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

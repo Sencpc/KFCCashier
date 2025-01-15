@@ -16,14 +16,14 @@ namespace KFC {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class OutputStock : ReportClass {
         
-        public CrystalReport1() {
+        public OutputStock() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "OutputStock.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace KFC {
         
         public override string FullResourceName {
             get {
-                return "KFC.CrystalReport1.rpt";
+                return "KFC.OutputStock.rpt";
             }
             set {
                 // Do nothing
@@ -87,20 +87,12 @@ namespace KFC {
                 return this.ReportDefinition.Sections[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_h_transID {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedOutputStock : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedOutputStock() {
         }
         
         [Browsable(false)]
@@ -137,7 +129,7 @@ namespace KFC {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            OutputStock rpt = new OutputStock();
             rpt.Site = this.Site;
             return rpt;
         }

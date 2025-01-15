@@ -432,5 +432,17 @@ namespace KFC
             this.DialogResult = DialogResult.OK;
             ds.ShowDialog();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Cetakan cetak = new Cetakan(2, 0);
+            cetak.ShowDialog();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Cetakan cetak = new Cetakan(3, 0);
+            cetak.ShowDialog();
+        }
     }
 }
