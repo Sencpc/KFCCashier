@@ -73,5 +73,24 @@ namespace KFC
             return fullName;
         }
 
+        public int idCheck(string fullName)
+        {
+            string query = "SELECT id_pegawai FROM karyawan WHERE fullName = @fullName";
+            int idPegawai = 0;
+
+            using (var cmd = new MySqlCommand(query, koneksi.getConn()))
+            {
+                cmd.Parameters.AddWithValue("@fullName", fullName);
+
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    idPegawai = Convert.ToInt32(result);
+                }
+            }
+
+            return idPegawai;
+        }
+
     }
 }

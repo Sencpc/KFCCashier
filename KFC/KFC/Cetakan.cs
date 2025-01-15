@@ -48,7 +48,8 @@ namespace KFC
                     else if (type == 3)
                     {
                         HistoryPembelian report = new HistoryPembelian();
-                        report.SetDataSource(db.GetDataByDateRange(DateTime.Now.AddDays(-7), DateTime.Now));
+                        report.SetDataSource(db.GetDataByDateRange(DateTime.Now.AddMonths(-1), DateTime.Now));
+                        report.SetParameterValue("pegawai", id);
                         crystalReportViewer1.ReportSource = report;
                     }
                 }

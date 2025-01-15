@@ -17,12 +17,15 @@ namespace KFC
         MySqlTransaction transaction = null;
         int status;
         private int selectedMenuId = -1;
+        Karyawan kar = new Karyawan();
+        string user;
         public manager(string user)
         {
             InitializeComponent();
             disableButton();
             label1.Text = "Welcome, " + user;
             koneksi.setupConn();
+            this.user = user;
             LoadKategori();
             loadJenis();
             loadMenu();
@@ -441,7 +444,9 @@ namespace KFC
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Cetakan cetak = new Cetakan(3, 0);
+            koneksi.getConn().Open();
+            Cetakan cetak = new Cetakan(3, kar.idCheck(user));
+            koneksi.getConn().Close();
             cetak.ShowDialog();
         }
     }

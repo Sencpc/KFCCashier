@@ -55,32 +55,58 @@ namespace KFC
             {
                 using (var connection = koneksi.getConn())
                 {
-
                     foreach (string table in _tables)
                     {
-                        using (var command = new MySqlCommand())
+                        using (var schemaCommand = new MySqlCommand($"DESCRIBE {table}", connection))
                         {
-                            command.Connection = connection;
-                            command.CommandText = $@"
-                                SELECT * 
-                                FROM {table} 
-                                WHERE (created_date BETWEEN @startDate AND @endDate)
-                                   OR (modified_date BETWEEN @startDate AND @endDate)";
-
-                            command.Parameters.AddWithValue("@startDate", startDate);
-                            command.Parameters.AddWithValue("@endDate", endDate);
-
-                            using (var adapter = new MySqlDataAdapter(command))
+                            var hasDateColumns = false;
+                            using (var reader = schemaCommand.ExecuteReader())
                             {
-                                adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-                                try
+                                while (reader.Read())
                                 {
-                                    adapter.Fill(dataSet, table);
+                                    string columnName = reader.GetString("Field");
+                                    if (columnName == "created_date" || columnName == "modified_date")
+                                    {
+                                        hasDateColumns = true;
+                                        break;
+                                    }
                                 }
-                                catch (MySqlException ex)
+                            }
+
+                            string query;
+                            if (hasDateColumns)
+                            {
+                                query = $@"
+                            SELECT * 
+                            FROM {table} 
+                            WHERE (created_date BETWEEN @startDate AND @endDate)
+                               OR (modified_date BETWEEN @startDate AND @endDate)";
+                            }
+                            else
+                            {
+                                query = $"SELECT * FROM {table}";
+                            }
+
+                            using (var command = new MySqlCommand(query, connection))
+                            {
+                                if (hasDateColumns)
                                 {
-                                    Console.WriteLine($"Error loading table {table}: {ex.Message}");
-                                    continue;
+                                    command.Parameters.AddWithValue("@startDate", startDate);
+                                    command.Parameters.AddWithValue("@endDate", endDate);
+                                }
+
+                                using (var adapter = new MySqlDataAdapter(command))
+                                {
+                                    adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+                                    try
+                                    {
+                                        adapter.Fill(dataSet, table);
+                                    }
+                                    catch (MySqlException ex)
+                                    {
+                                        Console.WriteLine($"Error loading table {table}: {ex.Message}");
+                                        continue;
+                                    }
                                 }
                             }
                         }
