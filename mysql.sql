@@ -346,7 +346,7 @@ CREATE TABLE menu (
     nama_menu VARCHAR(255) NOT NULL,
     deskripsi TEXT,
     id_kategori INT(12) NOT NULL,
-    harga DECIMAL(12,2) NOT NULL,
+    harga INT NOT NULL,
     jenis VARCHAR(50),
     potongan VARCHAR(50),
     jumlah_potongan INT(2),
@@ -358,65 +358,65 @@ CREATE TABLE menu (
 
 INSERT INTO menu (nama_menu, deskripsi, id_kategori, harga, jenis, potongan, jumlah_potongan, include_toy, STATUS) VALUES
 -- Alacarte Chicken
-('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 28000.00, 'Crispy', 'Dada', 1, 0, 1),
-('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 23000.00, 'Crispy', 'Paha', 1, 0, 1),
-('Chicken ORI', 'Rasa original authentic', 1, 25000.00, 'Original', 'Dada', 1, 0, 1),
-('Chicken ORI', 'Rasa original authentic', 1, 20000.00, 'Original', 'Paha', 1, 0, 1),
+('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 28000, 'Crispy', 'Dada', 1, 0, 1),
+('Chicken Krispy', 'Rasa renyah dan agak pedas', 1, 23000, 'Crispy', 'Paha', 1, 0, 1),
+('Chicken ORI', 'Rasa original authentic', 1, 25000, 'Original', 'Dada', 1, 0, 1),
+('Chicken ORI', 'Rasa original authentic', 1, 20000, 'Original', 'Paha', 1, 0, 1),
 
 -- Bucket
-('Bucket 6', '6 CHICKEN', 2, 125000.00, NULL, NULL, 6, 0, 1),
-('Bucket 9', '9 CHICKEN', 2, 175000.00, NULL, NULL, 9, 0, 1),
-('Bucket 12', '12 CHICKEN', 2, 200000.00, NULL, NULL, 12, 0, 1),
+('Bucket 6', '6 CHICKEN', 2, 125000, NULL, NULL, 6, 0, 1),
+('Bucket 9', '9 CHICKEN', 2, 175000, NULL, NULL, 9, 0, 1),
+('Bucket 12', '12 CHICKEN', 2, 200000, NULL, NULL, 12, 0, 1),
 
 -- Combo
-('Super Besar 1', '1pc CHICKEN + 1 NASI + 1 MINUM + 1 SOP', 3, 40000.00, NULL, NULL, 1, 0, 1),
-('Super Besar 2', '2pc CHICKEN + 1 NASi + 1 MINUM + 1 SOP', 3, 52000.00, NULL, NULL, 2, 0, 1),
-('Super Family', '5pc CHICKEN + 3 NASI + 3 MINUM', 3, 120000.00, NULL, NULL, 5, 0, 1),
+('Super Besar 1', '1pc CHICKEN + 1 NASI + 1 MINUM + 1 SOP', 3, 40000, NULL, NULL, 1, 0, 1),
+('Super Besar 2', '2pc CHICKEN + 1 NASi + 1 MINUM + 1 SOP', 3, 52000, NULL, NULL, 2, 0, 1),
+('Super Family', '5pc CHICKEN + 3 NASI + 3 MINUM', 3, 120000, NULL, NULL, 5, 0, 1),
 
 -- Breakfast
-('Special Porridge', '1 Chicken Porridge + Hot Tea / Hot Coffee', 4, 22000.00, 'Sandwich', NULL, NULL, 0, 1),
+('Special Porridge', '1 Chicken Porridge + Hot Tea / Hot Coffee', 4, 22000, 'Sandwich', NULL, NULL, 0, 1),
 
 -- Coffee
-('Coffee', 'Hot Coffee', 5, 12000.00, 'Hot', NULL, NULL, 0, 1),
-('Coffee', 'Cold Coffee', 5, 12000.00, 'Cold', NULL, NULL, 0, 1),
+('Coffee', 'Hot Coffee', 5, 12000, 'Hot', NULL, NULL, 0, 1),
+('Coffee', 'Cold Coffee', 5, 12000, 'Cold', NULL, NULL, 0, 1),
 
 -- Kids Meal
-('Chaki Kids Meal 1', '1 pc ayam Original + 1 nasi + 1 minuman + mainan', 6, 45000.00, 'Original', NULL, 1, 1, 1),
+('Chaki Kids Meal 1', '1 pc ayam Original + 1 nasi + 1 minuman + mainan', 6, 45000, 'Original', NULL, 1, 1, 1),
 
 -- Dessert
-('Chocolate Sundae', 'Es krim vanilla dengan sirup coklat', 7, 12000.00, NULL, NULL, NULL, 0, 1),
+('Chocolate Sundae', 'Es krim vanilla dengan sirup coklat', 7, 12000, NULL, NULL, NULL, 0, 1),
 
 -- Special
-('Jagoan Hemat 1', '1pc CHICKEN + 1 NASI + 1 MINUM', 8, 35000.00, NULL, NULL, 1, 0, 1),
-('Jagoan Hemat 2', '2pc CHICKEN + 1 NASI + 1 MINUM', 8, 45000.00, NULL, NULL, 2, 0, 1),
-('Jagoan Hemat 3', '1pc CHICKEN + 1 NASI', 8, 25000.00, NULL, NULL, 1, 0, 1),
+('Jagoan Hemat 1', '1pc CHICKEN + 1 NASI + 1 MINUM', 8, 35000, NULL, NULL, 1, 0, 1),
+('Jagoan Hemat 2', '2pc CHICKEN + 1 NASI + 1 MINUM', 8, 45000, NULL, NULL, 2, 0, 1),
+('Jagoan Hemat 3', '1pc CHICKEN + 1 NASI', 8, 25000, NULL, NULL, 1, 0, 1),
 
 -- Drinks
-('Coca-Cola', 'Minuman bersoda', 9, 12000.00, NULL, NULL, NULL, 0, 1),
-('Sprite', 'Minuman bersoda lemon', 9, 12000.00, NULL, NULL, NULL, 0, 1),
-('Fanta', 'Minuman bersoda strawberry', 9, 12000.00, NULL, NULL, NULL, 0, 1),
-('Air Mineral', 'Air mineral', 9, 8000.00, NULL, NULL, NULL, 0, 1),
+('Coca-Cola', 'Minuman bersoda', 9, 12000, NULL, NULL, NULL, 0, 1),
+('Sprite', 'Minuman bersoda lemon', 9, 12000, NULL, NULL, NULL, 0, 1),
+('Fanta', 'Minuman bersoda strawberry', 9, 12000, NULL, NULL, NULL, 0, 1),
+('Air Mineral', 'Air mineral', 9, 8000, NULL, NULL, NULL, 0, 1),
 
 -- Sides
-('Nasi', 'Nasi putih', 10, 5000.00, NULL, NULL, NULL, 0, 1),
-('French Fries', 'Kentang goreng', 10, 15000.00, NULL, NULL, NULL, 0, 1),
-('Perkedel', 'Perkedel kentang', 10, 6000.00, NULL, NULL, NULL, 0, 1),
-('Soup', 'Sup ayam', 10, 7000.00, NULL, NULL, NULL, 0, 1);
+('Nasi', 'Nasi putih', 10, 5000, NULL, NULL, NULL, 0, 1),
+('French Fries', 'Kentang goreng', 10, 15000, NULL, NULL, NULL, 0, 1),
+('Perkedel', 'Perkedel kentang', 10, 6000, NULL, NULL, NULL, 0, 1),
+('Soup', 'Sup ayam', 10, 7000, NULL, NULL, NULL, 0, 1);
 
 CREATE TABLE diskon (
     id_diskon INT(12) PRIMARY KEY AUTO_INCREMENT,
     nama_diskon VARCHAR(255) NOT NULL,
-    nominal DECIMAL(20,2) NOT NULL,
+    nominal INT NOT NULL,
     diskon_type ENUM('Persen', 'Nominal') NOT NULL,
     status_diskon ENUM('Aktif', 'Nonaktif') NOT NULL
 );
 
 -- Insert data into diskon table
 INSERT INTO diskon (nama_diskon, nominal, diskon_type, status_diskon) VALUES
-('Normal', 0.00, 'Nominal', 'Aktif'),
-('Monday Special', 10.00, 'Persen', 'Aktif'),
-('Super Sunday', 25000.00, 'Nominal', 'Aktif'),
-('Birthday Special', 15.00, 'Persen', 'Aktif');
+('Normal', 0, 'Nominal', 'Aktif'),
+('Monday Special', 10, 'Persen', 'Aktif'),
+('Super Sunday', 25000, 'Nominal', 'Aktif'),
+('Birthday Special', 15, 'Persen', 'Aktif');
 
 CREATE TABLE kategori(
 	id_kategori INT(12)PRIMARY KEY AUTO_INCREMENT,
@@ -440,18 +440,18 @@ CREATE TABLE h_trans (
     id_htrans INT(20) PRIMARY KEY AUTO_INCREMENT,
     tanggal_transaksi DATE NOT NULL,
     id_karyawan INT(11) NOT NULL,
-    total_harga DECIMAL(12,2) NOT NULL,
+    total_harga INT NOT NULL,
     id_diskon INT(12),
-    total_diskon DECIMAL(12,2) NOT NULL,
+    total_diskon INT NOT NULL,
     FOREIGN KEY (id_karyawan) REFERENCES karyawan(id_pegawai),
     FOREIGN KEY (id_diskon) REFERENCES diskon(id_diskon)
 );
 
 -- Insert data into h_trans table
 INSERT INTO h_trans (tanggal_transaksi, id_karyawan, total_harga, id_diskon, total_diskon) VALUES
-('2024-12-19', 1, 225000.00, 2, 25000.00),
-('2024-12-19', 2, 175000.00, 3, 25000.00),
-('2024-12-19', 3, 85000.00, 4, 40000.00);
+('2024-12-19', 1, 225000, 2, 25000),
+('2024-12-19', 2, 175000, 3, 25000),
+('2024-12-19', 3, 85000, 4, 40000);
 
 CREATE TABLE stock(
     id_bahan INT(12) PRIMARY KEY AUTO_INCREMENT,
@@ -479,20 +479,20 @@ CREATE TABLE d_trans (
     id_htrans INT(20) NOT NULL,
     id_menu INT(12) NOT NULL,
     qty INT(5) NOT NULL,
-    subtotal DECIMAL(20,2) NOT NULL,
+    subtotal INT NOT NULL,
     FOREIGN KEY (id_htrans) REFERENCES h_trans(id_htrans),
     FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
 );
 
 -- Insert data into d_trans table
 INSERT INTO d_trans (id_htrans, id_menu, qty, subtotal) VALUES
-(1, 3, 1,25000.00),
-(1, 6, 1,175000.00),
-(1, 23, 7,35000.00),
-(1, 24, 1,15000.00),
-(2, 4, 1,20000.00),
-(2, 17, 4,180000.00),
-(3, 5, 1,125000.00);
+(1, 3, 1,25000),
+(1, 6, 1,175000),
+(1, 23, 7,35000),
+(1, 24, 1,15000),
+(2, 4, 1,20000),
+(2, 17, 4,180000),
+(3, 5, 1,125000);
 
 -- Create the menu_ingredients table
 CREATE TABLE menu_ingredients (
@@ -585,17 +585,17 @@ CREATE TABLE stock_history (
     qty_final INT(12) NOT NULL,
     satuan_bahan VARCHAR(255) NOT NULL,
     type_change ENUM('IN', 'OUT') NOT NULL,
-    date_change TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    DESCRIPTION TEXT,
+    date_change TIMESTAMP DEFAULT date(CURRENT_TIMESTAMP),
+    description TEXT,
     FOREIGN KEY (id_bahan) REFERENCES stock(id_bahan)
 );
 
 INSERT INTO stock_history (id_bahan, nama, qty_change, qty_final, satuan_bahan, type_change, date_change, DESCRIPTION) VALUES
-(1, 'Dada Original', 20, 80, 'Pcs', 'OUT', '2025-01-10 14:30:00', 'Stock reduction for daily sales'),
-(6, 'Coca-Cola', 50, 150, 'Pcs', 'IN', '2025-01-11 09:15:00', 'Regular stock replenishment'),
-(5, 'Nasi', 35, 65, 'Pcs', 'OUT', '2025-01-12 18:45:00', 'Evening service consumption'),
-(10, 'Coffee', 30, 130, 'Pcs', 'IN', '2025-01-13 11:20:00', 'Additional stock for peak season'),
-(4, 'Paha Crispy', 25, 75, 'Pcs', 'OUT', '2025-01-14 13:00:00', 'Lunch time consumption');
+(1, 'Dada Original', 20, 80, 'Pcs', 'OUT', '2025-01-10', 'Stock reduction for daily sales'),
+(6, 'Coca-Cola', 50, 150, 'Pcs', 'IN', '2025-01-11', 'Regular stock replenishment'),
+(5, 'Nasi', 35, 65, 'Pcs', 'OUT', '2025-01-12', 'Evening service consumption'),
+(10, 'Coffee', 30, 130, 'Pcs', 'IN', '2025-01-13', 'Additional stock for peak season'),
+(4, 'Paha Crispy', 25, 75, 'Pcs', 'OUT', '2025-01-14', 'Lunch time consumption');
 
 
 DELIMITER //
@@ -610,7 +610,7 @@ BEGIN
         qty_final,
         satuan_bahan,
         type_change,
-        DESCRIPTION
+        description
     )
     VALUES (
         NEW.id_bahan,
