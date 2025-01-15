@@ -30,6 +30,7 @@ C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.csproj.Sugge
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.exe.config
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Cetakan.resources
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Dapur.resources
+C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Diskon.resources
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Form1.resources
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Form2.resources
 C:\Users\seanc\source\repos\Sencpc\KFCCashier\KFC\KFC\obj\Debug\KFC.Form3.resources

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="proyekPv" targetNamespace="http://tempuri.org/proyekPv.xsd" xmlns:mstns="http://tempuri.org/proyekPv.xsd" xmlns="http://tempuri.org/proyekPv.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="proyekPv" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="proyekPv" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="proyekPv">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="cabang" msprop:Generator_RowEvHandlerName="cabangRowChangeEventHandler" msprop:Generator_RowDeletedName="cabangRowDeleted" msprop:Generator_RowDeletingName="cabangRowDeleting" msprop:Generator_RowEvArgName="cabangRowChangeEvent" msprop:Generator_TablePropName="cabang" msprop:Generator_RowChangedName="cabangRowChanged" msprop:Generator_UserTableName="cabang" msprop:Generator_RowChangingName="cabangRowChanging" msprop:Generator_RowClassName="cabangRow" msprop:Generator_TableClassName="cabangDataTable" msprop:Generator_TableVarName="tablecabang">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_cabang" msprop:Generator_ColumnPropNameInTable="id_cabangColumn" msprop:Generator_ColumnPropNameInRow="id_cabang" msprop:Generator_UserColumnName="id_cabang" msprop:Generator_ColumnVarNameInTable="columnid_cabang" type="xs:int" />
+              <xs:element name="nama_daerah" msprop:Generator_ColumnPropNameInTable="nama_daerahColumn" msprop:Generator_ColumnPropNameInRow="nama_daerah" msprop:Generator_UserColumnName="nama_daerah" msprop:Generator_ColumnVarNameInTable="columnnama_daerah" type="xs:string" minOccurs="0" />
+              <xs:element name="jalan_cabang" msprop:Generator_ColumnPropNameInTable="jalan_cabangColumn" msprop:Generator_ColumnPropNameInRow="jalan_cabang" msprop:Generator_UserColumnName="jalan_cabang" msprop:Generator_ColumnVarNameInTable="columnjalan_cabang" type="xs:string" minOccurs="0" />
+              <xs:element name="no_telp" msprop:Generator_ColumnPropNameInTable="no_telpColumn" msprop:Generator_ColumnPropNameInRow="no_telp" msprop:Generator_UserColumnName="no_telp" msprop:Generator_ColumnVarNameInTable="columnno_telp" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="d_trans" msprop:Generator_RowEvHandlerName="d_transRowChangeEventHandler" msprop:Generator_RowDeletedName="d_transRowDeleted" msprop:Generator_RowDeletingName="d_transRowDeleting" msprop:Generator_RowEvArgName="d_transRowChangeEvent" msprop:Generator_TablePropName="d_trans" msprop:Generator_RowChangedName="d_transRowChanged" msprop:Generator_UserTableName="d_trans" msprop:Generator_RowChangingName="d_transRowChanging" msprop:Generator_RowClassName="d_transRow" msprop:Generator_TableClassName="d_transDataTable" msprop:Generator_TableVarName="tabled_trans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_dtrans" msprop:Generator_ColumnPropNameInTable="id_dtransColumn" msprop:Generator_ColumnPropNameInRow="id_dtrans" msprop:Generator_UserColumnName="id_dtrans" msprop:Generator_ColumnVarNameInTable="columnid_dtrans" type="xs:int" />
+              <xs:element name="id_htrans" msprop:Generator_ColumnPropNameInTable="id_htransColumn" msprop:Generator_ColumnPropNameInRow="id_htrans" msprop:Generator_UserColumnName="id_htrans" msprop:Generator_ColumnVarNameInTable="columnid_htrans" type="xs:int" minOccurs="0" />
+              <xs:element name="id_menu" msprop:Generator_ColumnPropNameInTable="id_menuColumn" msprop:Generator_ColumnPropNameInRow="id_menu" msprop:Generator_UserColumnName="id_menu" msprop:Generator_ColumnVarNameInTable="columnid_menu" type="xs:int" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_UserColumnName="qty" msprop:Generator_ColumnVarNameInTable="columnqty" type="xs:int" minOccurs="0" />
+              <xs:element name="subtotal" msprop:Generator_ColumnPropNameInTable="subtotalColumn" msprop:Generator_ColumnPropNameInRow="subtotal" msprop:Generator_UserColumnName="subtotal" msprop:Generator_ColumnVarNameInTable="columnsubtotal" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="h_trans" msprop:Generator_RowEvHandlerName="h_transRowChangeEventHandler" msprop:Generator_RowDeletedName="h_transRowDeleted" msprop:Generator_RowDeletingName="h_transRowDeleting" msprop:Generator_RowEvArgName="h_transRowChangeEvent" msprop:Generator_TablePropName="h_trans" msprop:Generator_RowChangedName="h_transRowChanged" msprop:Generator_UserTableName="h_trans" msprop:Generator_RowChangingName="h_transRowChanging" msprop:Generator_RowClassName="h_transRow" msprop:Generator_TableClassName="h_transDataTable" msprop:Generator_TableVarName="tableh_trans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_htrans" msprop:Generator_ColumnPropNameInTable="id_htransColumn" msprop:Generator_ColumnPropNameInRow="id_htrans" msprop:Generator_UserColumnName="id_htrans" msprop:Generator_ColumnVarNameInTable="columnid_htrans" type="xs:int" />
+              <xs:element name="tanggal_transaksi" msprop:Generator_ColumnPropNameInTable="tanggal_transaksiColumn" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="tanggal_transaksi" msprop:Generator_UserColumnName="tanggal_transaksi" msprop:Generator_ColumnVarNameInTable="columntanggal_transaksi" type="xs:string" minOccurs="0" />
+              <xs:element name="id_karyawan" msprop:Generator_ColumnPropNameInTable="id_karyawanColumn" msprop:Generator_ColumnPropNameInRow="id_karyawan" msprop:Generator_UserColumnName="id_karyawan" msprop:Generator_ColumnVarNameInTable="columnid_karyawan" type="xs:int" minOccurs="0" />
+              <xs:element name="total_harga" msprop:Generator_ColumnPropNameInTable="total_hargaColumn" msprop:Generator_ColumnPropNameInRow="total_harga" msprop:Generator_UserColumnName="total_harga" msprop:Generator_ColumnVarNameInTable="columntotal_harga" type="xs:int" minOccurs="0" />
+              <xs:element name="id_diskon" msprop:Generator_ColumnPropNameInTable="id_diskonColumn" msprop:Generator_ColumnPropNameInRow="id_diskon" msprop:Generator_UserColumnName="id_diskon" msprop:Generator_ColumnVarNameInTable="columnid_diskon" type="xs:int" minOccurs="0" />
+              <xs:element name="total_diskon" msprop:Generator_ColumnPropNameInTable="total_diskonColumn" msprop:Generator_ColumnPropNameInRow="total_diskon" msprop:Generator_UserColumnName="total_diskon" msprop:Generator_ColumnVarNameInTable="columntotal_diskon" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="menu" msprop:Generator_RowEvHandlerName="menuRowChangeEventHandler" msprop:Generator_RowDeletedName="menuRowDeleted" msprop:Generator_RowDeletingName="menuRowDeleting" msprop:Generator_RowEvArgName="menuRowChangeEvent" msprop:Generator_TablePropName="menu" msprop:Generator_RowChangedName="menuRowChanged" msprop:Generator_UserTableName="menu" msprop:Generator_RowChangingName="menuRowChanging" msprop:Generator_RowClassName="menuRow" msprop:Generator_TableClassName="menuDataTable" msprop:Generator_TableVarName="tablemenu">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_menu" msprop:Generator_ColumnPropNameInTable="id_menuColumn" msprop:Generator_ColumnPropNameInRow="id_menu" msprop:Generator_UserColumnName="id_menu" msprop:Generator_ColumnVarNameInTable="columnid_menu" type="xs:int" />
+              <xs:element name="nama_menu" msprop:Generator_ColumnPropNameInTable="nama_menuColumn" msprop:Generator_ColumnPropNameInRow="nama_menu" msprop:Generator_UserColumnName="nama_menu" msprop:Generator_ColumnVarNameInTable="columnnama_menu" type="xs:string" minOccurs="0" />
+              <xs:element name="deskripsi" msprop:Generator_ColumnPropNameInTable="deskripsiColumn" msprop:Generator_ColumnPropNameInRow="deskripsi" msprop:Generator_UserColumnName="deskripsi" msprop:Generator_ColumnVarNameInTable="columndeskripsi" type="xs:string" minOccurs="0" />
+              <xs:element name="id_kategori" msprop:Generator_ColumnPropNameInTable="id_kategoriColumn" msprop:Generator_ColumnPropNameInRow="id_kategori" msprop:Generator_UserColumnName="id_kategori" msprop:Generator_ColumnVarNameInTable="columnid_kategori" type="xs:int" minOccurs="0" />
+              <xs:element name="harga" msprop:Generator_ColumnPropNameInTable="hargaColumn" msprop:Generator_ColumnPropNameInRow="harga" msprop:Generator_UserColumnName="harga" msprop:Generator_ColumnVarNameInTable="columnharga" type="xs:int" minOccurs="0" />
+              <xs:element name="jenis" msprop:Generator_ColumnPropNameInTable="jenisColumn" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="jenis" msprop:Generator_UserColumnName="jenis" msprop:Generator_ColumnVarNameInTable="columnjenis" type="xs:string" minOccurs="0" />
+              <xs:element name="potongan" msprop:Generator_ColumnPropNameInTable="potonganColumn" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="potongan" msprop:Generator_UserColumnName="potongan" msprop:Generator_ColumnVarNameInTable="columnpotongan" type="xs:string" minOccurs="0" />
+              <xs:element name="jumlah_potongan" msprop:Generator_ColumnPropNameInTable="jumlah_potonganColumn" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="jumlah_potongan" msprop:Generator_UserColumnName="jumlah_potongan" msprop:Generator_ColumnVarNameInTable="columnjumlah_potongan" type="xs:string" minOccurs="0" />
+              <xs:element name="include_toy" msprop:Generator_ColumnPropNameInTable="include_toyColumn" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="include_toy" msprop:Generator_UserColumnName="include_toy" msprop:Generator_ColumnVarNameInTable="columninclude_toy" type="xs:int" minOccurs="0" />
+              <xs:element name="gambar" msprop:Generator_ColumnPropNameInTable="gambarColumn" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="gambar" msprop:Generator_UserColumnName="gambar" msprop:Generator_ColumnVarNameInTable="columngambar" type="xs:string" minOccurs="0" />
+              <xs:element name="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_UserColumnName="status" msprop:Generator_ColumnVarNameInTable="columnstatus" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="menu_ingredients" msprop:Generator_RowEvHandlerName="menu_ingredientsRowChangeEventHandler" msprop:Generator_RowDeletedName="menu_ingredientsRowDeleted" msprop:Generator_RowDeletingName="menu_ingredientsRowDeleting" msprop:Generator_RowEvArgName="menu_ingredientsRowChangeEvent" msprop:Generator_TablePropName="menu_ingredients" msprop:Generator_RowChangedName="menu_ingredientsRowChanged" msprop:Generator_UserTableName="menu_ingredients" msprop:Generator_RowChangingName="menu_ingredientsRowChanging" msprop:Generator_RowClassName="menu_ingredientsRow" msprop:Generator_TableClassName="menu_ingredientsDataTable" msprop:Generator_TableVarName="tablemenu_ingredients">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_menu" msprop:Generator_ColumnPropNameInTable="id_menuColumn" msprop:Generator_ColumnPropNameInRow="id_menu" msprop:Generator_UserColumnName="id_menu" msprop:Generator_ColumnVarNameInTable="columnid_menu" type="xs:int" />
+              <xs:element name="id_stock" msprop:Generator_ColumnPropNameInTable="id_stockColumn" msprop:Generator_ColumnPropNameInRow="id_stock" msprop:Generator_UserColumnName="id_stock" msprop:Generator_ColumnVarNameInTable="columnid_stock" type="xs:int" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_UserColumnName="qty" msprop:Generator_ColumnVarNameInTable="columnqty" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="karyawan" msprop:Generator_RowEvHandlerName="karyawanRowChangeEventHandler" msprop:Generator_RowDeletedName="karyawanRowDeleted" msprop:Generator_RowDeletingName="karyawanRowDeleting" msprop:Generator_RowEvArgName="karyawanRowChangeEvent" msprop:Generator_TablePropName="karyawan" msprop:Generator_RowChangedName="karyawanRowChanged" msprop:Generator_UserTableName="karyawan" msprop:Generator_RowChangingName="karyawanRowChanging" msprop:Generator_RowClassName="karyawanRow" msprop:Generator_TableClassName="karyawanDataTable" msprop:Generator_TableVarName="tablekaryawan">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_pegawai" msprop:Generator_ColumnPropNameInTable="id_pegawaiColumn" msprop:Generator_ColumnPropNameInRow="id_pegawai" msprop:Generator_UserColumnName="id_pegawai" msprop:Generator_ColumnVarNameInTable="columnid_pegawai" type="xs:int" />
+              <xs:element name="id_cabang" msprop:Generator_ColumnPropNameInTable="id_cabangColumn" msprop:Generator_ColumnPropNameInRow="id_cabang" msprop:Generator_UserColumnName="id_cabang" msprop:Generator_ColumnVarNameInTable="columnid_cabang" type="xs:int" minOccurs="0" />
+              <xs:element name="fullName" msprop:Generator_ColumnPropNameInTable="fullNameColumn" msprop:Generator_ColumnPropNameInRow="fullName" msprop:Generator_UserColumnName="fullName" msprop:Generator_ColumnVarNameInTable="columnfullName" type="xs:string" minOccurs="0" />
+              <xs:element name="username_karyawan" msprop:Generator_ColumnPropNameInTable="username_karyawanColumn" msprop:Generator_ColumnPropNameInRow="username_karyawan" msprop:Generator_UserColumnName="username_karyawan" msprop:Generator_ColumnVarNameInTable="columnusername_karyawan" type="xs:string" minOccurs="0" />
+              <xs:element name="password_karyawan" msprop:Generator_ColumnPropNameInTable="password_karyawanColumn" msprop:Generator_ColumnPropNameInRow="password_karyawan" msprop:Generator_UserColumnName="password_karyawan" msprop:Generator_ColumnVarNameInTable="columnpassword_karyawan" type="xs:string" minOccurs="0" />
+              <xs:element name="jabatan" msprop:Generator_ColumnPropNameInTable="jabatanColumn" msprop:Generator_ColumnPropNameInRow="jabatan" msprop:Generator_UserColumnName="jabatan" msprop:Generator_ColumnVarNameInTable="columnjabatan" type="xs:string" minOccurs="0" />
+              <xs:element name="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_UserColumnName="status" msprop:Generator_ColumnVarNameInTable="columnstatus" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="kategori" msprop:Generator_RowEvHandlerName="kategoriRowChangeEventHandler" msprop:Generator_RowDeletedName="kategoriRowDeleted" msprop:Generator_RowDeletingName="kategoriRowDeleting" msprop:Generator_RowEvArgName="kategoriRowChangeEvent" msprop:Generator_TablePropName="kategori" msprop:Generator_RowChangedName="kategoriRowChanged" msprop:Generator_UserTableName="kategori" msprop:Generator_RowChangingName="kategoriRowChanging" msprop:Generator_RowClassName="kategoriRow" msprop:Generator_TableClassName="kategoriDataTable" msprop:Generator_TableVarName="tablekategori">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_kategori" msprop:Generator_ColumnPropNameInTable="id_kategoriColumn" msprop:Generator_ColumnPropNameInRow="id_kategori" msprop:Generator_UserColumnName="id_kategori" msprop:Generator_ColumnVarNameInTable="columnid_kategori" type="xs:int" />
+              <xs:element name="nama_kategori" msprop:Generator_ColumnPropNameInTable="nama_kategoriColumn" msprop:Generator_ColumnPropNameInRow="nama_kategori" msprop:Generator_UserColumnName="nama_kategori" msprop:Generator_ColumnVarNameInTable="columnnama_kategori" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="diskon" msprop:Generator_RowEvHandlerName="diskonRowChangeEventHandler" msprop:Generator_RowDeletedName="diskonRowDeleted" msprop:Generator_RowDeletingName="diskonRowDeleting" msprop:Generator_RowEvArgName="diskonRowChangeEvent" msprop:Generator_TablePropName="diskon" msprop:Generator_RowChangedName="diskonRowChanged" msprop:Generator_UserTableName="diskon" msprop:Generator_RowChangingName="diskonRowChanging" msprop:Generator_RowClassName="diskonRow" msprop:Generator_TableClassName="diskonDataTable" msprop:Generator_TableVarName="tablediskon">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_diskon" msprop:Generator_ColumnPropNameInTable="id_diskonColumn" msprop:Generator_ColumnPropNameInRow="id_diskon" msprop:Generator_UserColumnName="id_diskon" msprop:Generator_ColumnVarNameInTable="columnid_diskon" type="xs:int" />
+              <xs:element name="nama_diskon" msprop:Generator_ColumnPropNameInTable="nama_diskonColumn" msprop:Generator_ColumnPropNameInRow="nama_diskon" msprop:Generator_UserColumnName="nama_diskon" msprop:Generator_ColumnVarNameInTable="columnnama_diskon" type="xs:string" minOccurs="0" />
+              <xs:element name="nominal" msprop:Generator_ColumnPropNameInTable="nominalColumn" msprop:Generator_ColumnPropNameInRow="nominal" msprop:Generator_UserColumnName="nominal" msprop:Generator_ColumnVarNameInTable="columnnominal" type="xs:int" minOccurs="0" />
+              <xs:element name="diskon_type" msprop:Generator_ColumnPropNameInTable="diskon_typeColumn" msprop:Generator_ColumnPropNameInRow="diskon_type" msprop:Generator_UserColumnName="diskon_type" msprop:Generator_ColumnVarNameInTable="columndiskon_type" type="xs:string" minOccurs="0" />
+              <xs:element name="status_diskon" msprop:Generator_ColumnPropNameInTable="status_diskonColumn" msprop:Generator_ColumnPropNameInRow="status_diskon" msprop:Generator_UserColumnName="status_diskon" msprop:Generator_ColumnVarNameInTable="columnstatus_diskon" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="stock" msprop:Generator_RowEvHandlerName="stockRowChangeEventHandler" msprop:Generator_RowDeletedName="stockRowDeleted" msprop:Generator_RowDeletingName="stockRowDeleting" msprop:Generator_RowEvArgName="stockRowChangeEvent" msprop:Generator_TablePropName="stock" msprop:Generator_RowChangedName="stockRowChanged" msprop:Generator_UserTableName="stock" msprop:Generator_RowChangingName="stockRowChanging" msprop:Generator_RowClassName="stockRow" msprop:Generator_TableClassName="stockDataTable" msprop:Generator_TableVarName="tablestock">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_bahan" msprop:Generator_ColumnPropNameInTable="id_bahanColumn" msprop:Generator_ColumnPropNameInRow="id_bahan" msprop:Generator_UserColumnName="id_bahan" msprop:Generator_ColumnVarNameInTable="columnid_bahan" type="xs:int" />
+              <xs:element name="nama" msprop:Generator_ColumnPropNameInTable="namaColumn" msprop:Generator_ColumnPropNameInRow="nama" msprop:Generator_UserColumnName="nama" msprop:Generator_ColumnVarNameInTable="columnnama" type="xs:string" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_UserColumnName="qty" msprop:Generator_ColumnVarNameInTable="columnqty" type="xs:int" minOccurs="0" />
+              <xs:element name="satuan_bahan" msprop:Generator_ColumnPropNameInTable="satuan_bahanColumn" msprop:Generator_ColumnPropNameInRow="satuan_bahan" msprop:Generator_UserColumnName="satuan_bahan" msprop:Generator_ColumnVarNameInTable="columnsatuan_bahan" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="stock_history" msprop:Generator_RowEvHandlerName="stock_historyRowChangeEventHandler" msprop:Generator_RowDeletedName="stock_historyRowDeleted" msprop:Generator_RowDeletingName="stock_historyRowDeleting" msprop:Generator_RowEvArgName="stock_historyRowChangeEvent" msprop:Generator_TablePropName="stock_history" msprop:Generator_RowChangedName="stock_historyRowChanged" msprop:Generator_UserTableName="stock_history" msprop:Generator_RowChangingName="stock_historyRowChanging" msprop:Generator_RowClassName="stock_historyRow" msprop:Generator_TableClassName="stock_historyDataTable" msprop:Generator_TableVarName="tablestock_history">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_history" msprop:Generator_ColumnPropNameInTable="id_historyColumn" msprop:Generator_ColumnPropNameInRow="id_history" msprop:Generator_UserColumnName="id_history" msprop:Generator_ColumnVarNameInTable="columnid_history" type="xs:int" />
+              <xs:element name="id_bahan" msprop:Generator_ColumnPropNameInTable="id_bahanColumn" msprop:Generator_ColumnPropNameInRow="id_bahan" msprop:Generator_UserColumnName="id_bahan" msprop:Generator_ColumnVarNameInTable="columnid_bahan" type="xs:int" minOccurs="0" />
+              <xs:element name="nama" msprop:Generator_ColumnPropNameInTable="namaColumn" msprop:Generator_ColumnPropNameInRow="nama" msprop:Generator_UserColumnName="nama" msprop:Generator_ColumnVarNameInTable="columnnama" type="xs:string" minOccurs="0" />
+              <xs:element name="qty_change" msprop:Generator_ColumnPropNameInTable="qty_changeColumn" msprop:Generator_ColumnPropNameInRow="qty_change" msprop:Generator_UserColumnName="qty_change" msprop:Generator_ColumnVarNameInTable="columnqty_change" type="xs:int" minOccurs="0" />
+              <xs:element name="qty_final" msprop:Generator_ColumnPropNameInTable="qty_finalColumn" msprop:Generator_ColumnPropNameInRow="qty_final" msprop:Generator_UserColumnName="qty_final" msprop:Generator_ColumnVarNameInTable="columnqty_final" type="xs:int" minOccurs="0" />
+              <xs:element name="satuan_bahan" msprop:Generator_ColumnPropNameInTable="satuan_bahanColumn" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="satuan_bahan" msprop:Generator_UserColumnName="satuan_bahan" msprop:Generator_ColumnVarNameInTable="columnsatuan_bahan" type="xs:string" minOccurs="0" />
+              <xs:element name="type_change" msprop:Generator_ColumnPropNameInTable="type_changeColumn" msprop:Generator_ColumnPropNameInRow="type_change" msprop:Generator_UserColumnName="type_change" msprop:Generator_ColumnVarNameInTable="columntype_change" type="xs:string" minOccurs="0" />
+              <xs:element name="date_change" msprop:Generator_ColumnPropNameInTable="date_changeColumn" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="date_change" msprop:Generator_UserColumnName="date_change" msprop:Generator_ColumnVarNameInTable="columndate_change" type="xs:string" minOccurs="0" />
+              <xs:element name="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_UserColumnName="description" msprop:Generator_ColumnVarNameInTable="columndescription" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="cabangKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:cabang" />
+      <xs:field xpath="mstns:id_cabang" />
+    </xs:unique>
+    <xs:unique name="d_transKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:d_trans" />
+      <xs:field xpath="mstns:id_dtrans" />
+    </xs:unique>
+    <xs:unique name="h_transKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:h_trans" />
+      <xs:field xpath="mstns:id_htrans" />
+    </xs:unique>
+    <xs:unique name="menuKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:menu" />
+      <xs:field xpath="mstns:id_menu" />
+    </xs:unique>
+    <xs:unique name="menu_ingredientsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:menu_ingredients" />
+      <xs:field xpath="mstns:id_menu" />
+    </xs:unique>
+    <xs:unique name="karyawanKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:karyawan" />
+      <xs:field xpath="mstns:id_pegawai" />
+    </xs:unique>
+    <xs:unique name="kategoriKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:kategori" />
+      <xs:field xpath="mstns:id_kategori" />
+    </xs:unique>
+    <xs:unique name="diskonKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:diskon" />
+      <xs:field xpath="mstns:id_diskon" />
+    </xs:unique>
+    <xs:unique name="stockKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:stock" />
+      <xs:field xpath="mstns:id_bahan" />
+    </xs:unique>
+    <xs:unique name="stock_historyKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:stock_history" />
+      <xs:field xpath="mstns:id_history" />
+    </xs:unique>
+    <xs:keyref name="FK_stock_stock_history" refer="stockKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:stock_history" />
+      <xs:field xpath="mstns:id_bahan" />
+    </xs:keyref>
+    <xs:keyref name="FK_cabang_karyawan" refer="cabangKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:karyawan" />
+      <xs:field xpath="mstns:id_cabang" />
+    </xs:keyref>
+    <xs:keyref name="FK_stock_menu_ingredients" refer="stockKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:menu_ingredients" />
+      <xs:field xpath="mstns:id_stock" />
+    </xs:keyref>
+    <xs:keyref name="FK_menu_menu_ingredients" refer="menuKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:menu_ingredients" />
+      <xs:field xpath="mstns:id_menu" />
+    </xs:keyref>
+    <xs:keyref name="FK_kategori_menu" refer="kategoriKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:menu" />
+      <xs:field xpath="mstns:id_kategori" />
+    </xs:keyref>
+    <xs:keyref name="FK_karyawan_h_trans" refer="karyawanKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:h_trans" />
+      <xs:field xpath="mstns:id_karyawan" />
+    </xs:keyref>
+    <xs:keyref name="FK_diskon_h_trans" refer="diskonKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:h_trans" />
+      <xs:field xpath="mstns:id_diskon" />
+    </xs:keyref>
+    <xs:keyref name="FK_menu_d_trans" refer="menuKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:d_trans" />
+      <xs:field xpath="mstns:id_menu" />
+    </xs:keyref>
+    <xs:keyref name="FK_h_trans_d_trans" refer="h_transKey1" msdata:ConstraintOnly="true">
+      <xs:selector xpath=".//mstns:d_trans" />
+      <xs:field xpath="mstns:id_htrans" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

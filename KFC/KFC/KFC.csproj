@@ -100,6 +100,7 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="getDatabase.cs" />
     <Compile Include="Karyawan.cs" />
     <Compile Include="Kasir.cs">
       <SubType>Form</SubType>
@@ -123,6 +124,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="proyekPv.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>proyekPv.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Cetakan.resx">
       <DependentUpon>Cetakan.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +179,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="proyekPv.xsc">
+      <DependentUpon>proyekPv.xsd</DependentUpon>
+    </None>
+    <None Include="proyekPv.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>proyekPv.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="proyekPv.xss">
+      <DependentUpon>proyekPv.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -18,10 +18,10 @@ namespace KFC
         public static void setupConn()
         {
             conn = new MySqlConnection(
-                "Server=10.10.5.192;" +
+                "Server=localhost;" +
                 "Database=proyekpv;" +
-                "User ID=tegar;" +
-                "Password=1234;"
+                "User ID=root;" +
+                "Password=;"
                 );
             conn.Open();
             conn.Close();

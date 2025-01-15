@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,17 +17,43 @@ namespace KFC
         public Cetakan(int id)
         {
             InitializeComponent();
+            DatabaseService db = new DatabaseService();
+
             try
             {
-                CrystalReport1 report = new CrystalReport1();
-                report.SetDatabaseLogon("tegar", "1234", "10.10.5.192", "proyekpv");
-                report.VerifyDatabase();
-                report.SetParameterValue("h_transID", id);
-                crystalReportViewer1.ReportSource = report;
+                var dataset = db.GetAllData();
+
+                if (dataset.Tables.Count > 0)
+                {
+                    foreach (DataTable table in dataset.Tables)
+                    {
+                        Console.WriteLine($"Loaded {table.TableName}: {table.Rows.Count} rows");
+                    }
+
+                    CrystalReport1 report = new CrystalReport1();
+                    report.SetDataSource(dataset);
+                    report.SetParameterValue("h_transID", id);
+                    crystalReportViewer1.ReportSource = report;
+                }
+                else
+                {
+                    MessageBox.Show("No data was loaded from the database.");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading report: {ex.Message}");
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            if (crystalReportViewer1.ReportSource != null)
+            {
+                CrystalReport1 report = (CrystalReport1)crystalReportViewer1.ReportSource;
+                report.Close();
+                report.Dispose();
             }
         }
     }
