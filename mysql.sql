@@ -3,6 +3,9 @@ CREATE DATABASE proyekpv;
 USE proyekpv;
 SET FOREIGN_KEY_CHECKS=0;
 
+SET GLOBAL event_scheduler = ON;
+
+
 -- table cabang
 CREATE TABLE cabang(
     id_cabang INT(12)PRIMARY KEY AUTO_INCREMENT,
@@ -585,8 +588,8 @@ CREATE TABLE stock_history (
     qty_final INT(12) NOT NULL,
     satuan_bahan VARCHAR(255) NOT NULL,
     type_change ENUM('IN', 'OUT') NOT NULL,
-    date_change TIMESTAMP DEFAULT date(CURRENT_TIMESTAMP),
-    description TEXT,
+    date_change TIMESTAMP DEFAULT DATE(CURRENT_TIMESTAMP),
+    DESCRIPTION TEXT,
     FOREIGN KEY (id_bahan) REFERENCES stock(id_bahan)
 );
 
@@ -596,6 +599,32 @@ INSERT INTO stock_history (id_bahan, nama, qty_change, qty_final, satuan_bahan, 
 (5, 'Nasi', 35, 65, 'Pcs', 'OUT', '2025-01-12', 'Evening service consumption'),
 (10, 'Coffee', 30, 130, 'Pcs', 'IN', '2025-01-13', 'Additional stock for peak season'),
 (4, 'Paha Crispy', 25, 75, 'Pcs', 'OUT', '2025-01-14', 'Lunch time consumption');
+
+CREATE TABLE h_trans_everymonth(
+    id_historymonth INT(12) PRIMARY KEY AUTO_INCREMENT,
+    id_htrans INT(12)NOT NULL,
+    tanggal_transaksi DATE NOT NULL,
+    id_karyawan INT(11) NOT NULL,
+    total_harga INT NOT NULL,
+    diskon_id INT(12),
+    total_diskon INT NOT NULL,
+    FOREIGN KEY (id_htrans) REFERENCES h_trans(id_htrans),
+    FOREIGN KEY (id_karyawan) REFERENCES karyawan(id_pegawai),
+    FOREIGN KEY (diskon_id) REFERENCES diskon(id_diskon)
+);
+
+INSERT INTO h_trans_everymonth (id_htrans, tanggal_transaksi, id_karyawan, total_harga, diskon_id, total_diskon)
+SELECT 
+    h.id_htrans,
+    h.tanggal_transaksi,
+    h.id_karyawan,
+    h.total_harga,
+    h.id_diskon,
+    IFNULL(IF(d.diskon_type = "Nominal" , (h.total_harga - d.nominal) ,(h.total_harga * d.nominal / 100)), 0) AS total_diskon
+FROM h_trans h
+LEFT JOIN diskon d ON h.id_diskon = d.id_diskon
+WHERE MONTH(h.tanggal_transaksi) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
+  AND YEAR(h.tanggal_transaksi) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH);
 
 
 DELIMITER //
@@ -610,7 +639,7 @@ BEGIN
         qty_final,
         satuan_bahan,
         type_change,
-        description
+        DESCRIPTION
     )
     VALUES (
         NEW.id_bahan,
@@ -696,5 +725,29 @@ CREATE
     END //
 
 DELIMITER ;
+
+DELIMITER $$
+
+CREATE EVENT update_h_trans_everymonth
+ON SCHEDULE EVERY 1 MONTH
+STARTS (CURRENT_DATE + INTERVAL 1 DAY)
+DO
+BEGIN
+    INSERT INTO h_trans_everymonth (id_htrans, tanggal_transaksi, id_karyawan, total_harga, id_diskon, total_diskon)
+    SELECT 
+        id_htrans,
+        tanggal_transaksi,
+        id_karyawan,
+        total_harga,
+        id_diskon,
+        IFNULL((total_harga * diskon.persen_diskon / 100), 0) AS total_diskon
+    FROM h_trans
+    LEFT JOIN diskon ON h_trans.id_diskon = diskon.id_diskon
+    WHERE MONTH(tanggal_transaksi) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
+      AND YEAR(tanggal_transaksi) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH);
+END$$
+
+DELIMITER ;
+
 
 SET FOREIGN_KEY_CHECKS=1;
